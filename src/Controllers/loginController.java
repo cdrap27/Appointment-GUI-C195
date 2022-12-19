@@ -1,4 +1,4 @@
-package Main;
+package Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 
-public class Controller {
+public class loginController {
 
     @FXML
     public ChoiceBox<String> language;
