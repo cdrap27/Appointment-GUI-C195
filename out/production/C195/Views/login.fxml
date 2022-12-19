@@ -23,7 +23,7 @@
             <Text layoutX="62.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
             <Text layoutX="63.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Button fx:id="login" layoutX="217.0" layoutY="174.0" mnemonicParsing="false" onAction="#onLogin" text="Login" />
-            <Button layoutX="166.0" layoutY="174.0" mnemonicParsing="false" text="Exit" />
+            <Button fx:id="exit" layoutX="166.0" layoutY="174.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
             <Text layoutX="60.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language: " />
             <Text fx:id="language" layoutX="121.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children>
