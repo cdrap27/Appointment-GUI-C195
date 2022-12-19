@@ -53,4 +53,8 @@ public class DBConnection {
             System.out.println(e.getMessage());
         }
     }
+    public static Connection getConnection(){
+
+        return conn;
+    }
 }
