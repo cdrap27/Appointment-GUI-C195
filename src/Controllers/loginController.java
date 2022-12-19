@@ -1,24 +1,31 @@
 package Controllers;
 
 import DAO.userAccess;
+import Main.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 
 public class loginController {
 
     @FXML
-    public ChoiceBox<String> language;
+
     public TextField username;
     public TextField password;
+    public Text language;
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
     private void initialize(){
-        language.setItems(languages);
+        if(Main.locale == "US"){
+            language.setText("English");
+        }
+        else
+            language.setText(Main.locale);
     }
 
 
