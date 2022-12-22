@@ -6,11 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -49,11 +53,17 @@ public class loginController {
     }
 
 
-    public void onLogin(ActionEvent actionEvent) {
+    public void onLogin(ActionEvent actionEvent) throws IOException {
         String user = username.getText();
         String pass = password.getText();
+
         if(userAccess.userFound(user, pass) == true){
-            System.out.println("User Found!");
+            Stage dash = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
+            dash.setTitle("Login");
+
+            dash.setScene(new Scene(root, 1055, 699));
+            dash.show();
         }
         else
         {
