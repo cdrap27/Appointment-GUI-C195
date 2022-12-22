@@ -20,8 +20,8 @@
          <children>
             <TextField fx:id="username" layoutX="121.0" layoutY="45.0" />
             <TextField fx:id="password" layoutX="120.0" layoutY="89.0" />
-            <Text layoutX="62.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <Text layoutX="63.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <Text fx:id="usernameLabel" layoutX="62.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text fx:id="passwordLabel" layoutX="63.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Button fx:id="login" layoutX="217.0" layoutY="174.0" mnemonicParsing="false" onAction="#onLogin" text="Login" />
             <Button fx:id="exit" layoutX="166.0" layoutY="174.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
             <Text layoutX="60.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language: " />

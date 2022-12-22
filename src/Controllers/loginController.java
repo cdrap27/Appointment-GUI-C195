@@ -11,6 +11,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.net.URL;
+import java.time.ZoneId;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class loginController {
@@ -21,10 +25,16 @@ public class loginController {
     public TextField password;
     public Text language;
     public Button exit;
+    public Button login;
+    public Text usernameLabel;
+    public Text passwordLabel;
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
-    private void initialize(){
-        if(Main.locale == "US"){
+    private void initialize(ResourceBundle rb, URL url){
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
+        if(Main.locale == "US" || Main.locale == "FR"){
+            ZoneId zoneId = ZoneId.systemDefault();
+            passwordLabel.setText(resourceBundle.getString("passwordLabel"));
             language.setText("English");
         }
         else
