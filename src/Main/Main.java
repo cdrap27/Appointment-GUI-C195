@@ -15,10 +15,12 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         locale = Locale.getDefault().getCountry();
-        System.out.println("" + locale);
+
         Parent root = FXMLLoader.load(getClass().getResource("../Views/login.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        if (locale == "FR")
+        primaryStage.setTitle("Connectez-vous");
+        primaryStage.setScene(new Scene(root, 518, 247));
         primaryStage.show();
     }
 

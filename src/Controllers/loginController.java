@@ -28,17 +28,24 @@ public class loginController {
     public Button login;
     public Text usernameLabel;
     public Text passwordLabel;
+    public Text languageLabel;
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
-    private void initialize(ResourceBundle rb, URL url){
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
-        if(Main.locale == "US" || Main.locale == "FR"){
-            ZoneId zoneId = ZoneId.systemDefault();
-            passwordLabel.setText(resourceBundle.getString("passwordLabel"));
+    private void initialize(){
+           if(Main.locale == "US" ){
+            System.out.println("working");
             language.setText("English");
         }
-        else
-            language.setText(Main.locale);
+        else if(Main.locale == "FR") {
+               language.setText("Français");
+               login.setText("Connectez-vous");
+               exit.setText("Sortie");
+               usernameLabel.setText("Nom d’utilisateur");
+               passwordLabel.setText("Mot de passe");
+               languageLabel.setText("Langue");
+
+
+           }
     }
 
 
@@ -51,8 +58,14 @@ public class loginController {
         else
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            if(Main.locale == "US")
             alert.setTitle("User not found");
+            else if(Main.locale == "FR")
+            alert.setTitle("Utilisateur introuvable");
+            if(Main.locale == "US")
             alert.setContentText("User not found");
+            else if (Main.locale == "FR")
+            alert.setContentText("Utilisateur introuvable");
             alert.showAndWait();
         }
 
