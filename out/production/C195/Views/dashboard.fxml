@@ -24,8 +24,16 @@
       </TableView>
       <TableView fx:id="appointmentsTable" layoutX="64.0" layoutY="365.0" prefHeight="200.0" prefWidth="926.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="appointmentsID" prefWidth="48.0" text="ID" />
+          <TableColumn fx:id="title" prefWidth="78.0" text="Title" />
+            <TableColumn fx:id="description" prefWidth="84.0" text="Description" />
+            <TableColumn fx:id="appointmentLocation" prefWidth="75.0" text="Location " />
+            <TableColumn fx:id="appointmentType" prefWidth="94.0" text="Type" />
+            <TableColumn fx:id="start" prefWidth="147.0" text="Start " />
+            <TableColumn fx:id="end" prefWidth="152.0" text="End" />
+            <TableColumn fx:id="customer" prefWidth="87.0" text="Customer" />
+            <TableColumn fx:id="user" prefWidth="87.0" text="User" />
+            <TableColumn fx:id="contact" prefWidth="73.0" text="Contact" />
         </columns>
       </TableView>
       <Text layoutX="64.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers">
