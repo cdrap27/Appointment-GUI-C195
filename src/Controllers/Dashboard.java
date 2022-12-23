@@ -25,6 +25,7 @@ public class Dashboard {
     public TableColumn update;
     public TableColumn updater;
     public TableColumn division;
+
     //appointment table
     public TableView appointmentsTable;
 
@@ -42,6 +43,7 @@ public class Dashboard {
 
     @FXML
     private void initialize(){
+
         //populate the customers table
         customersTable.setItems(DAO.DBCustomers.getCustomerList());
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
@@ -54,6 +56,7 @@ public class Dashboard {
         update.setCellValueFactory(new PropertyValueFactory<>("changeDate"));
         updater.setCellValueFactory(new PropertyValueFactory<>("changer"));
         division.setCellValueFactory(new PropertyValueFactory<>("division"));
+
         //populate appointments table
         appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());
         appointmentsID.setCellValueFactory(new PropertyValueFactory<>("ID"));
