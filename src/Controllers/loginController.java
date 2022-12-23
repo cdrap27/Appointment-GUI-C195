@@ -84,9 +84,18 @@ public class loginController {
 
     public void onExit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        if(Main.locale == "US")
         alert.setTitle("Exit");
+        else if (Main.locale == "FR")
+        alert.setTitle("Sortie?");
+        if(Main.locale == "US")
         alert.setHeaderText("Exit?");
-        alert.setContentText("Are you sure you want to exit?");
+        else if (Main.locale == "FR")
+        alert.setHeaderText("Sortie?");
+        if(Main.locale == "US")
+        alert.setContentText("Exit?");
+        else if (Main.locale == "FR")
+        alert.setContentText("Sortie?");
         alert.showAndWait();
         if(alert.getResult() == ButtonType.OK){
             Stage stage = (Stage) exit.getScene().getWindow();

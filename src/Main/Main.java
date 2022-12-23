@@ -16,6 +16,8 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        DAO.DBCustomers.setCustomerList();
+
         locale = Locale.getDefault().getCountry();
 
         Parent root = FXMLLoader.load(getClass().getResource("../Views/login.fxml"));
