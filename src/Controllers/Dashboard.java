@@ -2,21 +2,44 @@ package Controllers;
 
 import Model.Customers;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.ObservableList;
 
+import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
 public class Dashboard {
 
     public TableView customersTable;
     public TableView appointmentsTable;
+    public TableColumn customerID;
+    public TableColumn name;
+    public TableColumn address;
+    public TableColumn post;
+    public TableColumn phone;
+    public TableColumn creationDate;
+    public TableColumn creator;
+    public TableColumn update;
+    public TableColumn updater;
+    public TableColumn division;
+
     @FXML
     private void initialize(){
-        Customers c = new Customers(1,"Jack", "dkd", "23322", "757",
-                LocalDateTime.of(2022, 12, 12, 12, 58),
-                "henry", LocalDateTime.of(2022, 12, 12, 12, 58),
-                "jack", 2340);
-        DAO.DBCustomers.addCustomer(c);
-        System.out.println("" + DAO.DBCustomers.getCustomerList().get(0).getCreateDate() );
+        //populate the customers table
+        customersTable.setItems(DAO.DBCustomers.getCustomerList());
+        customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        post.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        creationDate.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
+        update.setCellValueFactory(new PropertyValueFactory<>("changeDate"));
+        updater.setCellValueFactory(new PropertyValueFactory<>("changer"));
+        division.setCellValueFactory(new PropertyValueFactory<>("division"));
+
     }
 }
