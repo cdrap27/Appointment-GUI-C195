@@ -17,6 +17,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         DAO.DBCustomers.setCustomerList();
+        DAO.DBAppointment.setAppointmentList();
 
         locale = Locale.getDefault().getCountry();
 
