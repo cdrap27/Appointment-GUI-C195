@@ -46,24 +46,7 @@ public class DBAppointment {
                 //add appointment
                 appointmentList.add(a);
             }
-
-        //test data for this week
-        Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
-                LocalDateTime.now().plusDays(1), LocalDateTime.now(), LocalDateTime.now(), "cahd",
-                LocalDateTime.now(), "cahd", 1, 2, 3);
-        appointmentList.add(a);
-        //test for this month
-        a = new Appointment(3, "month", "gotta test", "Mall", "regualr",
-                    LocalDateTime.now().minusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
-                    LocalDateTime.now(), "cahd", 1, 2, 3);
-        appointmentList.add(a);
-        //another month test
-        a = new Appointment(3, "month 2", "gotta test", "Mall", "regualr",
-                    LocalDateTime.now().plusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
-                    LocalDateTime.now(), "cahd", 1, 2, 3);
-        appointmentList.add(a);
-
-
+        //addTestData();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -116,6 +99,25 @@ public class DBAppointment {
             }
         }
         return thisMonth;
+
+    }
+
+    private static void addTestData(){
+        //test data for this week
+        Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
+                LocalDateTime.now().plusDays(1), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
+        //test for this month
+        a = new Appointment(3, "month", "gotta test", "Mall", "regualr",
+                LocalDateTime.now().minusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
+        //another month test
+        a = new Appointment(3, "month 2", "gotta test", "Mall", "regualr",
+                LocalDateTime.now().plusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
 
     }
 }
