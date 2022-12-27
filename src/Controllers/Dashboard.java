@@ -1,6 +1,9 @@
 package Controllers;
 
+import Model.Appointment;
 import Model.Customers;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -8,7 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Dashboard {
@@ -40,6 +46,7 @@ public class Dashboard {
     public TableColumn user;
     public TableColumn contact;
 
+   // public ObservableList<Appointment> weekAppointment;
 
     @FXML
     private void initialize(){
@@ -70,5 +77,31 @@ public class Dashboard {
         user.setCellValueFactory(new PropertyValueFactory<>("user"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
+    }
+
+    /**
+     * sets the appointments to this week
+     * @param actionEvent on clicking this week radio button
+     */
+    public void onThisWeek(ActionEvent actionEvent) {
+
+      appointmentsTable.setItems(DAO.DBAppointment.thisWeek());
+
+    }
+
+    /**
+     * sets the appointments to this month
+     * @param actionEvent on clicking this month radio button
+     */
+    public void onThisMonth(ActionEvent actionEvent) {
+        appointmentsTable.setItems(DAO.DBAppointment.thisMonth());
+    }
+
+    /**
+     * sets appointments to all
+     * @param actionEvent on clicking all radio button
+     */
+    public void onAll(ActionEvent actionEvent) {
+        appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());
     }
 }

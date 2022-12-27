@@ -41,9 +41,28 @@ public class DBAppointment {
                 //create an appointment
                 Appointment a = new Appointment(id, title, description, location, type, start, end,
                         created, creator, update, updater, customer, user, contact);
+
+
                 //add appointment
                 appointmentList.add(a);
             }
+
+        //test data for this week
+        Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
+                LocalDateTime.now().plusDays(1), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
+        //test for this month
+        a = new Appointment(3, "month", "gotta test", "Mall", "regualr",
+                    LocalDateTime.now().minusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                    LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
+        //another month test
+        a = new Appointment(3, "month 2", "gotta test", "Mall", "regualr",
+                    LocalDateTime.now().plusDays(15), LocalDateTime.now(), LocalDateTime.now(), "cahd",
+                    LocalDateTime.now(), "cahd", 1, 2, 3);
+        appointmentList.add(a);
+
 
         }
         catch(SQLException e){
@@ -61,5 +80,42 @@ public class DBAppointment {
      */
     public static ObservableList<Appointment> getAppointmentList() {
         return appointmentList;
+    }
+
+    /**
+     * creates a list of appointments for this week
+     * @return current weeks appointments
+     */
+    public static ObservableList<Appointment> thisWeek(){
+        ObservableList<Appointment> thisWeek = FXCollections.observableArrayList();
+        LocalDateTime beforeDate = LocalDateTime.now().plusDays(7);
+        LocalDateTime afterDate = LocalDateTime.now().minusDays(7);
+        for(int i = 0; i < DAO.DBAppointment.getAppointmentList().size(); i++) {
+
+            if (DAO.DBAppointment.getAppointmentList().get(i).getStart().isBefore(beforeDate) &&
+                    DAO.DBAppointment.getAppointmentList().get(i).getStart().isAfter(afterDate)) {
+                thisWeek.add(DAO.DBAppointment.getAppointmentList().get(i));
+            }
+        }
+        return thisWeek;
+    }
+
+    /**
+     * returns appointments for this month
+     * @return current months appointments
+     */
+    public static ObservableList<Appointment> thisMonth(){
+        ObservableList<Appointment> thisMonth = FXCollections.observableArrayList();
+        LocalDateTime beforeDate = LocalDateTime.now().plusDays(30);
+        LocalDateTime afterDate = LocalDateTime.now().minusDays(30);
+        for(int i = 0; i < DAO.DBAppointment.getAppointmentList().size(); i++) {
+
+            if (DAO.DBAppointment.getAppointmentList().get(i).getStart().isBefore(beforeDate) &&
+                    DAO.DBAppointment.getAppointmentList().get(i).getStart().isAfter(afterDate)) {
+                thisMonth.add(DAO.DBAppointment.getAppointmentList().get(i));
+            }
+        }
+        return thisMonth;
+
     }
 }
