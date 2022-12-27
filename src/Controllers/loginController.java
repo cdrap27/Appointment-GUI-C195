@@ -36,11 +36,11 @@ public class loginController {
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
     private void initialize(){
-           if(Main.locale == "US" ){
+           if(Locale.getDefault().getLanguage() == "en" ){
             System.out.println("working");
             language.setText("English");
         }
-        else if(Main.locale == "FR") {
+        else if(Locale.getDefault().getLanguage() == "fr") {
                language.setText("Français");
                login.setText("Connectez-vous");
                exit.setText("Sortie");
@@ -60,7 +60,7 @@ public class loginController {
         if(userAccess.userFound(user, pass) == true){
             Stage dash = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
-            dash.setTitle("Login");
+            dash.setTitle("Dashboard");
 
             dash.setScene(new Scene(root, 1055, 699));
             dash.show();
@@ -68,13 +68,13 @@ public class loginController {
         else
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            if(Main.locale == "US")
+            if(Locale.getDefault().getLanguage() == "en")
             alert.setTitle("User not found");
-            else if(Main.locale == "FR")
+            else if(Locale.getDefault().getLanguage() == "fr")
             alert.setTitle("Utilisateur introuvable");
-            if(Main.locale == "US")
+            if(Locale.getDefault().getLanguage() == "en")
             alert.setContentText("User not found");
-            else if (Main.locale == "FR")
+            else if (Locale.getDefault().getLanguage() == "fr")
             alert.setContentText("Utilisateur introuvable");
             alert.showAndWait();
         }
@@ -84,17 +84,17 @@ public class loginController {
 
     public void onExit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        if(Main.locale == "US")
+        if(Locale.getDefault().getLanguage() == "en")
         alert.setTitle("Exit");
-        else if (Main.locale == "FR")
+        else if (Locale.getDefault().getLanguage() == "fr")
         alert.setTitle("Sortie?");
-        if(Main.locale == "US")
+        if(Locale.getDefault().getLanguage() == "en")
         alert.setHeaderText("Exit?");
-        else if (Main.locale == "FR")
+        else if (Locale.getDefault().getLanguage() == "fr")
         alert.setHeaderText("Sortie?");
-        if(Main.locale == "US")
+        if(Locale.getDefault().getLanguage() == "en")
         alert.setContentText("Exit?");
-        else if (Main.locale == "FR")
+        else if (Locale.getDefault().getLanguage() == "fr")
         alert.setContentText("Sortie?");
         alert.showAndWait();
         if(alert.getResult() == ButtonType.OK){
