@@ -6,13 +6,15 @@ import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -51,8 +53,9 @@ public class Dashboard {
     public TableColumn contact;
 
     private static Appointment modifyApp;
+    public Button exitDash;
 
-   // public ObservableList<Appointment> weekAppointment;
+    // public ObservableList<Appointment> weekAppointment;
 
     @FXML
     private void initialize(){
@@ -120,13 +123,14 @@ public class Dashboard {
     public void onDeleteCustomer(ActionEvent actionEvent) {
     }
 
-    public void onAddAppointment(ActionEvent actionEvent) {
-        if(DBAppointment.duplicateAppointment == true){
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setHeaderText("Duplicate ID");
-            errorAlert.setContentText("Cannot add appointment, duplicate");
-            errorAlert.showAndWait();
-        }
+    public void onAddAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/addAppointment.fxml"));
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 784, 601);
+        stage.setTitle("Add Appointment");
+        stage.setScene(scene);
+        stage.getScene().getWindow().centerOnScreen();
+        stage.show();
     }
 
     public void onModifyAppointment(ActionEvent actionEvent) {
@@ -158,6 +162,18 @@ public class Dashboard {
             errorAlert.setHeaderText("Nothing Selected");
             errorAlert.setContentText("Nothing Selected to Delete");
             errorAlert.showAndWait();
+        }
+    }
+
+    public void onExit(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit?");
+        alert.setContentText("Are you sure you want to exit?");
+        ButtonType CANCEL = new ButtonType("Cancel");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            Stage stage = (Stage) exitDash.getScene().getWindow();
+            stage.close();
         }
     }
 }
