@@ -33,12 +33,16 @@ public class loginController {
     public Text usernameLabel;
     public Text passwordLabel;
     public Text languageLabel;
+    public Text locationText;
+    public Text locationTextResult;
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
     private void initialize(){
+        locationTextResult.setText(Locale.getDefault().getCountry());
            if(Locale.getDefault().getLanguage() == "en" ){
             System.out.println("working");
             language.setText("English");
+
         }
         else if(Locale.getDefault().getLanguage() == "fr") {
                language.setText("Français");
@@ -47,6 +51,7 @@ public class loginController {
                usernameLabel.setText("Nom d’utilisateur");
                passwordLabel.setText("Mot de passe");
                languageLabel.setText("Langue");
+               locationText.setText("Lieu");
 
 
            }
