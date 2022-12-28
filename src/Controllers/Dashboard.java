@@ -5,6 +5,8 @@ import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Dashboard {
@@ -45,6 +48,8 @@ public class Dashboard {
     public TableColumn customer;
     public TableColumn user;
     public TableColumn contact;
+
+    private static Appointment modifyApp;
 
    // public ObservableList<Appointment> weekAppointment;
 
@@ -103,5 +108,45 @@ public class Dashboard {
      */
     public void onAll(ActionEvent actionEvent) {
         appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());
+    }
+
+    public void onAddCustomer(ActionEvent actionEvent) {
+    }
+
+    public void onModifyCustomer(ActionEvent actionEvent) {
+    }
+
+    public void onDeleteCustomer(ActionEvent actionEvent) {
+    }
+
+    public void onAddAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onModifyAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onDeleteAppointment(ActionEvent actionEvent) {
+        if(!appointmentsTable.getSelectionModel().getSelectedCells().isEmpty()){
+            int i = appointmentsTable.getSelectionModel().getSelectedIndex();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Record?");
+            alert.setContentText("Are you sure you want to delete this appointment?");
+            ButtonType CANCEL = new ButtonType("Cancel");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                DAO.DBAppointment.getAppointmentList().remove(i);
+                DAO.DBAppointment.deleteAppointment(i);
+            }
+            else
+                return;
+        }
+        //if nothing is selected, print an error message
+        else
+        {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Nothing Selected");
+            errorAlert.setContentText("Nothing Selected to Delete");
+            errorAlert.showAndWait();
+        }
     }
 }

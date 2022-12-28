@@ -15,6 +15,8 @@ public class DBAppointment {
 
     private static ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
+
+
     public static void setAppointmentList(){
         try{
             //accesses the database
@@ -102,6 +104,22 @@ public class DBAppointment {
 
     }
 
+    public static void deleteAppointment(int i){
+        try{
+
+            //accesses the database
+            String sql = "DELETE FROM appointments WHERE Appointment_ID = " + i;
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            System.out.println("deleted");
+
+
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private static void addTestData(){
         //test data for this week
         Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
@@ -120,4 +138,5 @@ public class DBAppointment {
         appointmentList.add(a);
 
     }
+
 }
