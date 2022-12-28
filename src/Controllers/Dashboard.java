@@ -1,5 +1,6 @@
 package Controllers;
 
+import DAO.DBAppointment;
 import Model.Appointment;
 import Model.Customers;
 import javafx.collections.FXCollections;
@@ -120,11 +121,21 @@ public class Dashboard {
     }
 
     public void onAddAppointment(ActionEvent actionEvent) {
+        if(DBAppointment.duplicateAppointment == true){
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Duplicate ID");
+            errorAlert.setContentText("Cannot add appointment, duplicate");
+            errorAlert.showAndWait();
+        }
     }
 
     public void onModifyAppointment(ActionEvent actionEvent) {
     }
 
+    /**
+     * deletes the selected appointment from the database as well as the observable list.
+     * @param actionEvent on delete appointment
+     */
     public void onDeleteAppointment(ActionEvent actionEvent) {
         if(!appointmentsTable.getSelectionModel().getSelectedCells().isEmpty()){
             int i = appointmentsTable.getSelectionModel().getSelectedIndex();

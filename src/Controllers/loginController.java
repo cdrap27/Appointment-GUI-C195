@@ -63,12 +63,14 @@ public class loginController {
         String pass = password.getText();
 
         if(userAccess.userFound(user, pass) == true){
-            Stage dash = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
-            dash.setTitle("Dashboard");
 
-            dash.setScene(new Scene(root, 1055, 699));
-            dash.show();
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1055, 699);
+            stage.setTitle("Dashboard");
+            stage.setScene(scene);
+            stage.getScene().getWindow().centerOnScreen();
+            stage.show();
         }
         else
         {
