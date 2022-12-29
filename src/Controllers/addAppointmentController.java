@@ -25,7 +25,7 @@ public class addAppointmentController {
     public TextField addDescription;
     public TextField addLocation;
     public TextField addType;
-    public ChoiceBox testingThisPOS;
+
 
 
     public void initialize(){
