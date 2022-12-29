@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,9 +25,13 @@ public class addAppointmentController {
     public TextField addDescription;
     public TextField addLocation;
     public TextField addType;
+    public ChoiceBox testingThisPOS;
+
 
     public void initialize(){
         addAppointmentID.setText(Integer.toString(DAO.DBAppointment.getAppointmentList().size()+1));
+        addStartTime.setItems(Model.Appointment.time());
+        addEndTime.setItems(Model.Appointment.time());
     }
 
     public void onSave(ActionEvent actionEvent) {

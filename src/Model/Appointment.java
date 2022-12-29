@@ -1,6 +1,10 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Appointment {
     private int ID;
@@ -170,5 +174,16 @@ public class Appointment {
 
     public int getContact(){
         return contact;
+    }
+
+    public static ObservableList<String> time(){
+        ObservableList<String> time = FXCollections.observableArrayList();
+        LocalTime start = LocalTime.of(0,15);
+        time.add(LocalTime.of(0,0).toString());
+        while(start.isAfter(LocalTime.of(0,0))){
+            time.add(start.toString());
+            start = start.plusMinutes(15);
+        }
+        return time;
     }
 }
