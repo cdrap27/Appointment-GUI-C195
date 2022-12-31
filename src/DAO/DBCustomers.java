@@ -51,6 +51,7 @@ public class DBCustomers {
         catch(SQLException e){
             e.printStackTrace();
         }
+        System.out.println("" + customerList.size() + " customers added.");
         //sets the size of the list of customers
         customerSize = customerList.size();
     }
@@ -104,12 +105,13 @@ public class DBCustomers {
                 ps.setString(5, c.getPhone());
                 ps.setInt(6, c.getDivision());
                 ps.execute();
-                System.out.println("Added a customer");
+               // System.out.println("Added a customer");
 
             }
+            /*
             else if(duplicateCustomer == true){
                 System.out.println("duplicate customer");
-            }
+            }*/
 
         }
         catch(SQLException e) {

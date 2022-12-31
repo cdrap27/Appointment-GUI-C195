@@ -51,6 +51,8 @@ public class DBAppointment {
                 //add appointment
                 appointmentList.add(a);
             }
+            System.out.println("" + appointmentList.size() + " appointments added.");
+
 
         }
         catch(SQLException e){
@@ -167,11 +169,12 @@ public class DBAppointment {
                 ps.setInt(9, a.getUser());
                 ps.setInt(10, a.getContact());
                 ps.execute();
-                System.out.println("Added an appointment");
+                //System.out.println("Added an appointment");
             }
+            /*
             else if(duplicateAppointment == true){
-                System.out.println("duplicate appointment");
-            }
+                //System.out.println("duplicate appointment");
+            }*/
 
         }
         catch(SQLException e) {

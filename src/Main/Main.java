@@ -18,6 +18,8 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         DAO.DBCustomers.setCustomerList();
         DAO.DBAppointment.setAppointmentList();
+        DAO.DBCountries.setCountryList();
+        DAO.DBDivision.setDivisionList();
         locale = Locale.getDefault().getCountry();
 
         Parent root = FXMLLoader.load(getClass().getResource("../Views/login.fxml"));
