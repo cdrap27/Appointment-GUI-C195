@@ -18,12 +18,11 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         DAO.DBCustomers.setCustomerList();
         DAO.DBAppointment.setAppointmentList();
-        System.out.println("" + Locale.getDefault().getLanguage());
         locale = Locale.getDefault().getCountry();
 
         Parent root = FXMLLoader.load(getClass().getResource("../Views/login.fxml"));
         primaryStage.setTitle("Login");
-        if (locale == "FR")
+        if (locale == "fr")
         primaryStage.setTitle("Connectez-vous");
         primaryStage.setScene(new Scene(root, 518, 247));
         primaryStage.show();
