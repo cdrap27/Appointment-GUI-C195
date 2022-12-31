@@ -13,7 +13,11 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class DBAppointment {
+    //checks if the appointment already exists.
     public static Boolean duplicateAppointment = false;
+    //checks the size of the appointment list
+    public static int appointmentSize;
+    //a list of appointments
     private static ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
 
@@ -32,7 +36,6 @@ public class DBAppointment {
             //while there is another appointment, takes in customer information and adds it to the customerList
             while(rs.next()){
                 int id = rs.getInt("Appointment_ID");
-                System.out.println("" + id);
                 String title = rs.getString("Title");
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
@@ -53,6 +56,7 @@ public class DBAppointment {
         catch(SQLException e){
             e.printStackTrace();
         }
+        appointmentSize = appointmentList.size();
     }
     /**
      * add an appointment to the observable list
@@ -111,12 +115,13 @@ public class DBAppointment {
     public static void deleteAppointment(int i){
         try{
             //accesses the database
-
-            String sql = "DELETE FROM appointments WHERE Appointment_ID =  "+ i + ";";
-            System.out.println("" + sql);
+            String sql = "SET FOREIGN_KEY_CHECKS=0;";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             ps.execute();
-            System.out.println("deleted " + sql);
+            sql = "DELETE FROM appointments WHERE Appointment_ID =  "+ i + ";";
+            ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.execute();
+            System.out.println("deleted");
             }
         catch(SQLException e) {
             e.printStackTrace();
@@ -161,26 +166,11 @@ public class DBAppointment {
                 ps.setInt(8, a.getCustomer());
                 ps.setInt(9, a.getUser());
                 ps.setInt(10, a.getContact());
-
                 ps.execute();
-/*
-                 sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-                 ps = DBConnection.getConnection().prepareStatement(sql);
-
-                ps.setString(1, a.getTitle());
-                ps.setString(2, a.getDescription());
-                ps.setString(3, a.getLocation());
-                ps.setString(4, a.getType());
-                ps.setTimestamp(5, Timestamp.valueOf(a.getStart()));
-                ps.setTimestamp(6, Timestamp.valueOf(a.getEnd()));
-                ps.setInt(7, a.getCustomer());
-                ps.setInt(8, a.getUser());
-                ps.setInt(9, a.getContact());
-                ps.execute();*/
+                System.out.println("Added an appointment");
             }
             else if(duplicateAppointment == true){
-                System.out.println("duplicate");
+                System.out.println("duplicate appointment");
             }
 
         }
@@ -191,18 +181,50 @@ public class DBAppointment {
 
     }
 
+    /**
+     * deletes appointments that are associated with a customer being deleted.
+     * @param i i is the customer id
+     * @throws SQLException sql exception
+     */
+    public static void deleteAssociatedAppointment(int i) throws SQLException {
+        //accesses the database
+        String sql = "SELECT * FROM appointments;";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+            /*
+            while there is another appointment, takes in customer information and checks to see if it matches an
+            appointment currently in the database
+            */
+        while(rs.next()){
+            int j = rs.getInt("Customer_ID");
+            //goes through the database to find matching customer ids
+            if(i == j){
+                //if a match is found, j is set to the corresponding appointment id for deletion
+                j = rs.getInt("Appointment_ID");
+                //cycles through the appointment list to find a matching entry and deletes it
+                for(int k =0; k<appointmentList.size(); k++){
+                    if(appointmentList.get(k).getCustomer() == i){
+                       appointmentList.remove(k);
+                       k = 0;
+                   }
+                }
+                deleteAppointment(j);
+            }
+            }
+    }
+
     private static void addTestData(){
         //test data for this week
         Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
-                LocalDateTime.now().plusDays(1), LocalDateTime.now(),  1, 2, 3);
+                LocalDateTime.now().plusDays(1), LocalDateTime.now(),  2, 2, 3);
         addAppointmentSQL(a);
         //test for this month
         a = new Appointment(4, "month", "testing more", "Hawaii", "expensive", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(10).plusHours(1),
-                1, 2, 3);
+                3, 2, 3);
         addAppointmentSQL(a);
         //another month test
         a = new Appointment(5, "month 2", "gotta test", "Mall", "regualr",
-                LocalDateTime.now().plusDays(15), LocalDateTime.now(), 1, 2, 3);
+                LocalDateTime.now().plusDays(15), LocalDateTime.now(), 2, 2, 3);
         addAppointmentSQL(a);
         //default data 1
         a = new Appointment(1, "title", "description", "location", "Planning Session",

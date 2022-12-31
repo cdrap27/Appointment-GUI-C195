@@ -18,10 +18,6 @@
             <TableColumn fx:id="address" prefWidth="100.0" text="Address" />
             <TableColumn fx:id="post" prefWidth="75.0" text="Postal Code" />
             <TableColumn fx:id="phone" prefWidth="85.0" text="Phone" />
-            <TableColumn fx:id="creationDate" prefWidth="129.0" text="Creation Date" />
-            <TableColumn fx:id="creator" prefWidth="68.0" text="Created By" />
-            <TableColumn fx:id="update" prefWidth="143.0" text="Last Update" />
-            <TableColumn fx:id="updater" prefWidth="106.0" text="Last Updated By" />
             <TableColumn fx:id="division" prefWidth="94.0" text="Division ID" />
         </columns>
       </TableView>

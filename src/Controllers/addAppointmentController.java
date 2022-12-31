@@ -1,5 +1,6 @@
 package Controllers;
 
+import DAO.DBAppointment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +30,7 @@ public class addAppointmentController {
 
 
     public void initialize(){
-        addAppointmentID.setText(Integer.toString(DAO.DBAppointment.getAppointmentList().size()+1));
+        addAppointmentID.setText(Integer.toString(DBAppointment.appointmentSize+1));
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());
     }

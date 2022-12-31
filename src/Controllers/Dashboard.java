@@ -32,10 +32,6 @@ public class Dashboard {
     public TableColumn address;
     public TableColumn post;
     public TableColumn phone;
-    public TableColumn creationDate;
-    public TableColumn creator;
-    public TableColumn update;
-    public TableColumn updater;
     public TableColumn division;
 
     //appointment table
@@ -67,10 +63,6 @@ public class Dashboard {
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         post.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        creationDate.setCellValueFactory(new PropertyValueFactory<>("createDate"));
-        creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
-        update.setCellValueFactory(new PropertyValueFactory<>("changeDate"));
-        updater.setCellValueFactory(new PropertyValueFactory<>("changer"));
         division.setCellValueFactory(new PropertyValueFactory<>("division"));
 
         //populate appointments table
@@ -120,9 +112,44 @@ public class Dashboard {
     public void onModifyCustomer(ActionEvent actionEvent) {
     }
 
+    /**
+     * checks if a customer is selected and confirms delete.  on deletion, deletes the customer from the database and observable list
+     * then deletes all associated appointments
+     * @param actionEvent
+     */
     public void onDeleteCustomer(ActionEvent actionEvent) {
+        if(!customersTable.getSelectionModel().getSelectedCells().isEmpty()){
+            Customers c =(Customers) customersTable.getSelectionModel().getSelectedItem();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Record?");
+            alert.setContentText("Are you sure you want to delete this customer?");
+            ButtonType CANCEL = new ButtonType("Cancel");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                int i = customersTable.getSelectionModel().getSelectedIndex();
+                DAO.DBCustomers.getCustomerList().remove(i);
+                i = c.getCustomerID();
+                DAO.DBCustomers.deleteCustomerSQL(i);
+            }
+            else
+                return;
+        }
+        //if nothing is selected, print an error message
+        else
+        {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Nothing Selected");
+            errorAlert.setContentText("Nothing Selected to Delete");
+            errorAlert.showAndWait();
+        }
     }
 
+    /**
+     * switches to the add appointment screen to add an appointment
+     * @param actionEvent clicking add
+     * @throws IOException ioexception
+     */
     public void onAddAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/addAppointment.fxml"));
         Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -168,6 +195,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * exits the program
+     * @param actionEvent on exit
+     */
     public void onExit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit?");

@@ -13,23 +13,14 @@ public class Customers {
     private String address;
     private String postalCode;
     private String phone;
-    private LocalDateTime createDate;
-    private String creator;
-    private LocalDateTime changeDate;
-    private String changer;
     private int division;
 
-    public Customers(int customerID, String name, String address, String postalCode, String phone, LocalDateTime createDate,
-                     String creator, LocalDateTime changeDate, String changer, int division){
+    public Customers(int customerID, String name, String address, String postalCode, String phone, int division){
         this.customerID = customerID;
         this.name = name;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
-        this.createDate = createDate;
-        this.creator = creator;
-        this.changeDate = changeDate;
-        this.changer = changer;
         this.division = division;
     }
 
@@ -54,22 +45,6 @@ public class Customers {
 
     public String getPhone(){
        return phone;
-    }
-
-    public LocalDateTime getCreateDate(){
-       return createDate;
-    }
-
-    public String getCreator(){
-       return creator;
-    }
-
-    public LocalDateTime getChangeDate(){
-        return changeDate;
-    }
-
-    public String getChanger(){
-        return changer;
     }
 
     public int getDivision(){
@@ -97,22 +72,6 @@ public class Customers {
 
     public void setPhone(String phone){
         this.phone = phone;
-    }
-
-    public void setCreateDate(LocalDateTime createDate){
-        this.createDate = createDate;
-    }
-
-    public void setCreator(String creator){
-        this.creator = creator;
-    }
-
-    public void setChangeDate(LocalDateTime changeDate){
-        this.changeDate = changeDate;
-    }
-
-    public void setChanger(String changer){
-        this.changer = changer;
     }
 
     public void setDivision(int division){
