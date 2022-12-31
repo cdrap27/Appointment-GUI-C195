@@ -142,14 +142,17 @@ public class Dashboard {
      */
     public void onDeleteAppointment(ActionEvent actionEvent) {
         if(!appointmentsTable.getSelectionModel().getSelectedCells().isEmpty()){
-            int i = appointmentsTable.getSelectionModel().getSelectedIndex();
+            Appointment a =(Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete Record?");
             alert.setContentText("Are you sure you want to delete this appointment?");
             ButtonType CANCEL = new ButtonType("Cancel");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK){
+                int i = appointmentsTable.getSelectionModel().getSelectedIndex();
                 DAO.DBAppointment.getAppointmentList().remove(i);
+                 i = a.getID();
                 DAO.DBAppointment.deleteAppointment(i);
             }
             else
