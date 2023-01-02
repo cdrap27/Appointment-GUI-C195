@@ -2,7 +2,12 @@ package Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -134,14 +139,191 @@ public class Appointment {
         return contact;
     }
 
-    public static ObservableList<String> time(){
-        ObservableList<String> time = FXCollections.observableArrayList();
+    public static ObservableList<LocalTime> time(){
+        ObservableList<LocalTime> time = FXCollections.observableArrayList();
         LocalTime start = LocalTime.of(0,15);
-        time.add(LocalTime.of(0,0).toString());
+        time.add(LocalTime.of(0,0));
         while(start.isAfter(LocalTime.of(0,0))){
-            time.add(start.toString());
+            time.add(start);
             start = start.plusMinutes(15);
         }
         return time;
     }
+
+    /**
+     * checks
+     */
+    public static Boolean checkName(TextField addTitle){
+        String temp = addTitle.getText();
+        Boolean checkName = true;
+        if(temp.length() < 1) {
+            checkName = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Title Error");
+            errorAlert.setContentText("Title Error");
+            errorAlert.showAndWait();
+        }
+        return checkName;
+    }
+
+    public static Boolean checkDescription(TextField addDescription){
+        String temp = addDescription.getText();
+        Boolean checkName = true;
+        if(temp.length() < 1) {
+            checkName = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Description Error");
+            errorAlert.setContentText("Description Error");
+            errorAlert.showAndWait();
+        }
+        return checkName;
+    }
+
+    public static Boolean checkLocation(TextField addLocation){
+        String temp = addLocation.getText();
+        Boolean checkName = true;
+        if(temp.length() < 1) {
+            checkName = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Location Error");
+            errorAlert.setContentText("Location Error");
+            errorAlert.showAndWait();
+        }
+        return checkName;
+    }
+
+    public static Boolean checkType(TextField addType){
+        String temp = addType.getText();
+        Boolean checkName = true;
+        if(temp.length() < 1) {
+            checkName = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Type Error");
+            errorAlert.setContentText("Type Error");
+            errorAlert.showAndWait();
+        }
+        return checkName;
+    }
+
+    public static Boolean checkStartDate(DatePicker addStartDate){
+        Boolean checkName = true;
+
+            LocalDate date = (LocalDate) addStartDate.getValue();
+
+
+            if(date == null) {
+                checkName = false;
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Start Date Error");
+                errorAlert.setContentText("No start date selected");
+                errorAlert.showAndWait();
+                return checkName;
+            }
+            LocalDate currentDate = LocalDate.now();
+            if(date.isBefore(currentDate)){
+                checkName = false;
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Start Date Error");
+                errorAlert.setContentText("Start date cannot be before current date.");
+                errorAlert.showAndWait();
+                return checkName;
+            }
+            return checkName;
+        }
+
+    public static Boolean checkEndDate(DatePicker addEndDate, DatePicker addStartDate){
+        Boolean checkName = true;
+
+        LocalDate date = (LocalDate) addEndDate.getValue();
+
+
+        if(date == null) {
+            checkName = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("End Date Error");
+            errorAlert.setContentText("No end date selected");
+            errorAlert.showAndWait();
+            return checkName;
+        }
+       if(date.isBefore((LocalDate)addStartDate.getValue())){
+           checkName = false;
+           Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+           errorAlert.setHeaderText("End Date Error");
+           errorAlert.setContentText("End date cannot be before start date");
+           errorAlert.showAndWait();
+           return checkName;
+       }
+        return checkName;
+    }
+
+    public static Boolean checkStartTime(ChoiceBox addStartTime){
+        Boolean check = true;
+             LocalTime time = (LocalTime) addStartTime.getSelectionModel().getSelectedItem();
+        if(time == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Start Time Error");
+            errorAlert.setContentText("No start time selected.");
+            errorAlert.showAndWait();
+            return check;
+        }
+        LocalTime t1 = LocalTime.of(8, 0);
+        LocalTime t2 = LocalTime.of(22,0);
+        if(time.isBefore(t1) || time.isAfter(t2)){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Start Time Error");
+            errorAlert.setContentText("Start time is outside of business hours.");
+            errorAlert.showAndWait();
+            return check;
+        }
+        return check;
+    }
+
+    public static Boolean checkEndTime(ChoiceBox addEndTime, ChoiceBox addStartTime){
+            Boolean check = true;
+            LocalTime time = (LocalTime) addEndTime.getSelectionModel().getSelectedItem();
+            if(time == null){
+                check = false;
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("End Time Error");
+                errorAlert.setContentText("No end time selected.");
+                errorAlert.showAndWait();
+                return check;
+            }
+
+        LocalTime t1 = LocalTime.of(8, 0);
+        LocalTime t2 = LocalTime.of(22,0);
+        if(time.isBefore(t1) || time.isAfter(t2)){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("End Time Error");
+            errorAlert.setContentText("End time is outside of business hours.");
+            errorAlert.showAndWait();
+            return check;
+        }
+            return check;
+        }
+
+    public static Boolean checkAppointmentTime(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime, ChoiceBox addEndTime){
+        Boolean check = true;
+        LocalDate startDate = addStartDate.getValue();
+        LocalDate endDate = addEndDate.getValue();
+        LocalTime startTime = (LocalTime)addStartTime.getSelectionModel().getSelectedItem();
+        LocalTime endTime = (LocalTime)addEndTime.getSelectionModel().getSelectedItem();
+        if(startDate.equals(endDate)){
+            if(endTime.isBefore(startTime)){
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("End Time Error");
+                errorAlert.setContentText("End time is before start time.");
+                errorAlert.showAndWait();
+                return check;
+            }
+        }
+        return check;
+
+    }
+
+
+
 }

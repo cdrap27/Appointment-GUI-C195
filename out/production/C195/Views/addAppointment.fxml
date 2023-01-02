@@ -41,6 +41,8 @@
       <ChoiceBox fx:id="addContactID" layoutX="165.0" layoutY="377.0" prefHeight="25.0" prefWidth="174.0" />
       <ChoiceBox fx:id="addCustomerID" layoutX="165.0" layoutY="418.0" prefHeight="25.0" prefWidth="174.0" />
       <ChoiceBox fx:id="addUserID" layoutX="165.0" layoutY="457.0" prefHeight="25.0" prefWidth="174.0" />
+      <Text layoutX="523.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EST" />
+      <Text layoutX="523.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EST" />
    </children>
 
 
