@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.DBAppointment;
+import Model.Appointment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

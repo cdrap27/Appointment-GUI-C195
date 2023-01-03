@@ -7,9 +7,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.util.TimeZone;
 
 public class Appointment {
     private int ID;
@@ -322,6 +323,25 @@ public class Appointment {
         }
         return check;
 
+    }
+
+    /**
+     * uses a lambda expression to cycel through the appointments and change all times to local time
+     * @param appointments  appointment list
+     * @return  appointment list with updated times
+     */
+    public static ObservableList<Appointment> toLocalTime(ObservableList<Appointment> appointments){
+        appointments.forEach(a ->{
+          ZonedDateTime zoneStart = a.getStart().atZone(ZoneId.of("UTC"));
+          zoneStart = zoneStart.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+          a.setStart(zoneStart.toLocalDateTime());
+          ZonedDateTime zoneEnd = a.getEnd().atZone(ZoneId.of("UTC"));
+          zoneEnd = zoneEnd.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+          a.setEnd(zoneEnd.toLocalDateTime());
+
+
+        });
+        return appointments;
     }
 
 

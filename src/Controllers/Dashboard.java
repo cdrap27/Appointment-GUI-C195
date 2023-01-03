@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -50,12 +51,16 @@ public class Dashboard {
 
     private static Appointment modifyApp;
     public Button exitDash;
+    public Text timeZone;
 
     // public ObservableList<Appointment> weekAppointment;
 
     @FXML
     private void initialize(){
-
+        //sets timezone
+        timeZone.setText("Timezone: " + System.getProperty("user.timezone"));
+        //sets appointment times to local time
+        Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());
         //populate the customers table
         customersTable.setItems(DAO.DBCustomers.getCustomerList());
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
