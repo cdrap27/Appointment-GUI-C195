@@ -59,8 +59,6 @@ public class Dashboard {
     private void initialize(){
         //sets timezone
         timeZone.setText("Timezone: " + System.getProperty("user.timezone"));
-        //sets appointment times to local time
-        Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());
         //populate the customers table
         customersTable.setItems(DAO.DBCustomers.getCustomerList());
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));

@@ -1,6 +1,7 @@
 package Main;
 
 import Database.DBConnection;
+import Model.Appointment;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +22,8 @@ public class Main extends Application{
         DAO.DBCountries.setCountryList();
         DAO.DBDivision.setDivisionList();
         locale = Locale.getDefault().getCountry();
-
+        //sets appointment times to local time
+        Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());
         Parent root = FXMLLoader.load(getClass().getResource("../Views/login.fxml"));
         primaryStage.setTitle("Login");
         if (locale == "fr")

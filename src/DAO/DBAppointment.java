@@ -231,8 +231,8 @@ public class DBAppointment {
         addAppointmentSQL(a);
         //default data 1
         a = new Appointment(1, "title", "description", "location", "Planning Session",
-                LocalDateTime.of(2020, 05, 28, 12, 00, 00),
-                LocalDateTime.of(2020, 05, 28, 13, 00, 00),
+                LocalDateTime.of(2023, 05, 28, 23, 00, 00),
+                LocalDateTime.of(2023, 05, 28, 23, 15, 00),
                  1, 1, 3);
         addAppointmentSQL(a);
         //default data 2

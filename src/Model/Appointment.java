@@ -306,7 +306,25 @@ public class Appointment {
             return check;
         }
 
-    public static Boolean checkAppointmentTime(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime, ChoiceBox addEndTime){
+
+
+    public static Boolean checkCustomer(ChoiceBox customer){
+        Boolean check = true;
+        String cust = (String)customer.getSelectionModel().getSelectedItem();
+        if(cust == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Customer Error");
+            errorAlert.setContentText("No customer selected.");
+            errorAlert.showAndWait();
+            return check;
+        }
+
+        return check;
+    }
+
+    public static Boolean checkAppointmentTime(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime,
+                                               ChoiceBox addEndTime, ChoiceBox addCustomer){
         Boolean check = true;
         LocalDate startDate = addStartDate.getValue();
         LocalDate endDate = addEndDate.getValue();
@@ -314,11 +332,95 @@ public class Appointment {
         LocalTime endTime = (LocalTime)addEndTime.getSelectionModel().getSelectedItem();
         if(startDate.equals(endDate)){
             if(endTime.isBefore(startTime)){
+                check = false;
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setHeaderText("End Time Error");
                 errorAlert.setContentText("End time is before start time.");
                 errorAlert.showAndWait();
                 return check;
+            }
+        }
+
+        return check;
+
+    }
+
+    public static Boolean checkAppointmentOverlap(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime,
+                                               ChoiceBox addEndTime, ChoiceBox addCustomer) {
+        Boolean check = true;
+        LocalDate startDate = addStartDate.getValue();
+        LocalDate endDate = addEndDate.getValue();
+        LocalTime startTime = (LocalTime) addStartTime.getSelectionModel().getSelectedItem();
+        LocalTime endTime = (LocalTime) addEndTime.getSelectionModel().getSelectedItem();
+
+        LocalDateTime startDate2 = LocalDateTime.of(startDate, startTime);
+        LocalDateTime endDate2 = LocalDateTime.of(endDate, endTime);
+        int customerID = Model.Customers.findCustomerID((String)addCustomer.getSelectionModel().getSelectedItem());
+        for(int i = 0; i < DAO.DBAppointment.getAppointmentList().size(); i++) {
+            if (DAO.DBAppointment.getAppointmentList().get(i).getCustomer() == customerID) {
+                if (startDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                    if (startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+                    }
+                }
+                if(endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
+                    if(endDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+                    }
+                }
+                if(startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
+                    if(endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+                    }
+                }
+                if(startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
+                    check = false;
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("Appointment Error");
+                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                    errorAlert.showAndWait();
+                    return check;
+                }
+                if(endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
+                    check = false;
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("Appointment Error");
+                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                    errorAlert.showAndWait();
+                    return check;
+                }
+                if(endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
+                    check = false;
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("Appointment Error");
+                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                    errorAlert.showAndWait();
+                    return check;
+                }
+                if(startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
+                    check = false;
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("Appointment Error");
+                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                    errorAlert.showAndWait();
+                    return check;
+                }
+
             }
         }
         return check;

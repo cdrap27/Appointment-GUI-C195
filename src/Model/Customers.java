@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -51,6 +54,16 @@ public class Customers {
         return division;
     }
 
+    public static ObservableList<String> customerNames(ObservableList<Customers> customers){
+        ObservableList<String> customerNames = FXCollections.observableArrayList();
+        customers.forEach(c ->{
+            String nameCustomer = c.getName();
+            customerNames.add(nameCustomer);
+
+        });
+                return customerNames;
+    }
+
     /**
      * setters
      */
@@ -76,6 +89,20 @@ public class Customers {
 
     public void setDivision(int division){
         this.division = division;
+    }
+
+    /**
+     * gets customer id from customer name
+     * @param customerName customer name
+     * @return customer id
+     */
+    public static int findCustomerID(String customerName){
+        for(int i = 0; i < DAO.DBCustomers.getCustomerList().size(); i ++){
+            if(customerName.equals(DAO.DBCustomers.getCustomerList().get(i).getName())){
+                return DAO.DBCustomers.getCustomerList().get(i).getCustomerID();
+            }
+        }
+        return -1;
     }
 
 }

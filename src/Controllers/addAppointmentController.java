@@ -27,6 +27,7 @@ public class addAppointmentController {
     public TextField addDescription;
     public TextField addLocation;
     public TextField addType;
+    public Appointment addAnAppointment;
 
 
 
@@ -34,10 +35,14 @@ public class addAppointmentController {
         addAppointmentID.setText(Integer.toString(DBAppointment.appointmentSize+1));
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());
+        addCustomerID.setItems(Model.Customers.customerNames(DAO.DBCustomers.getCustomerList()));
     }
 
     public void onSave(ActionEvent actionEvent) {
         Boolean check = checkData();
+        if(check == true){
+            System.out.println("continue");
+        }
 
 
     }
@@ -61,36 +66,65 @@ public class addAppointmentController {
 
     public Boolean checkData(){
         Boolean check = true;
+        Boolean continued = true;
         while(check == true) {
             check = Model.Appointment.checkName(addTitle);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+                }
             check = Model.Appointment.checkDescription(addDescription);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkLocation(addLocation);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkType(addType);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkStartDate(addStartDate);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkEndDate(addEndDate, addStartDate);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkStartTime(addStartTime);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
+            }
             check = Model.Appointment.checkEndTime(addEndTime, addStartTime);
-            if (check == false)
+            if (check == false){
+                continued = false;
                 break;
-            check = Model.Appointment.checkAppointmentTime(addStartDate, addEndDate, addStartTime, addEndTime);
-            if (check == false)
+            }
+            check = Model.Appointment.checkAppointmentTime(addStartDate, addEndDate, addStartTime, addEndTime, addCustomerID);
+            if (check == false){
+                continued = false;
                 break;
+            }
+            check = Model.Appointment.checkCustomer(addCustomerID);
+            if (check == false){
+                continued = false;
+                break;
+            }
+            check = Model.Appointment.checkAppointmentOverlap(addStartDate, addEndDate, addStartTime, addEndTime, addCustomerID);
+            if (check == false){
+                continued = false;
+                break;
+            }
             check = false;
         }
-        return check;
+        return continued;
     }
 }
