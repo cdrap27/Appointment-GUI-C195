@@ -56,6 +56,7 @@ public class Customers {
 
     public static ObservableList<String> customerNames(ObservableList<Customers> customers){
         ObservableList<String> customerNames = FXCollections.observableArrayList();
+        //lambda expression to cycle through the customer list and return customer names
         customers.forEach(c ->{
             String nameCustomer = c.getName();
             customerNames.add(nameCustomer);

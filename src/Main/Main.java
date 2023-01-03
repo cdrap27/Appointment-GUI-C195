@@ -21,6 +21,8 @@ public class Main extends Application{
         DAO.DBAppointment.setAppointmentList();
         DAO.DBCountries.setCountryList();
         DAO.DBDivision.setDivisionList();
+        DAO.DBContact.setContactList();
+        DAO.DBUsers.setUserList();
         locale = Locale.getDefault().getCountry();
         //sets appointment times to local time
         Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());

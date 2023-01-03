@@ -427,6 +427,37 @@ public class Appointment {
 
     }
 
+    public static Boolean checkContact(ChoiceBox addContactID){
+        Boolean check = true;
+        String cust = (String)addContactID.getSelectionModel().getSelectedItem();
+        if(cust == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Contact Error");
+            errorAlert.setContentText("No contact selected.");
+            errorAlert.showAndWait();
+            return check;
+        }
+        return check;
+
+    }
+
+    public static Boolean checkUser(ChoiceBox addUserID){
+        Boolean check = true;
+        String cust = (String)addUserID.getSelectionModel().getSelectedItem();
+        if(cust == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("User Error");
+            errorAlert.setContentText("No user selected.");
+            errorAlert.showAndWait();
+            return check;
+        }
+        System.out.print("user is " + Model.Users.findUserID(cust));
+        return check;
+
+    }
+
     /**
      * uses a lambda expression to cycel through the appointments and change all times to local time
      * @param appointments  appointment list

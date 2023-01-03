@@ -36,6 +36,8 @@ public class addAppointmentController {
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());
         addCustomerID.setItems(Model.Customers.customerNames(DAO.DBCustomers.getCustomerList()));
+        addContactID.setItems(Model.Contacts.contactNames(DAO.DBContact.getContactList()));
+        addUserID.setItems(Model.Users.userNames(DAO.DBUsers.getUserList()));
     }
 
     public void onSave(ActionEvent actionEvent) {
@@ -120,6 +122,16 @@ public class addAppointmentController {
             }
             check = Model.Appointment.checkAppointmentOverlap(addStartDate, addEndDate, addStartTime, addEndTime, addCustomerID);
             if (check == false){
+                continued = false;
+                break;
+            }
+            check = Model.Appointment.checkContact(addContactID);
+            if(check == false){
+                continued = false;
+                break;
+            }
+            check = Model.Appointment.checkUser(addUserID);
+            if(check == false){
                 continued = false;
                 break;
             }
