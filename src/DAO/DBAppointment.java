@@ -110,6 +110,19 @@ public class DBAppointment {
         return thisMonth;
     }
 
+    public static ObservableList<Appointment> upcomingAppointments(){
+        ObservableList<Appointment> upcoming = FXCollections.observableArrayList();
+        LocalDateTime before = LocalDateTime.now().minusMinutes(15);
+        LocalDateTime after = LocalDateTime.now().plusMinutes(15);
+        for(int i = 0; i < DBAppointment.appointmentSize; i++){
+            if(DAO.DBAppointment.getAppointmentList().get(i).getStart().isAfter(before) &&
+            DAO.DBAppointment.getAppointmentList().get(i).getStart().isBefore(after)){
+                upcoming.add(DAO.DBAppointment.getAppointmentList().get(i));
+            }
+        }
+        return upcoming;
+    }
+
     /**
      * deletes an appointment by id number
      * @param i id of appointment

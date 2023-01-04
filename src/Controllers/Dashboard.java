@@ -81,6 +81,7 @@ public class Dashboard {
         user.setCellValueFactory(new PropertyValueFactory<>("user"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
+
     }
 
     /**

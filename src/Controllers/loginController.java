@@ -1,5 +1,6 @@
 package Controllers;
 
+import DAO.DBAppointment;
 import DAO.userAccess;
 import Main.Main;
 import javafx.collections.FXCollections;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -63,7 +65,7 @@ public class loginController {
         String pass = password.getText();
 
         if(userAccess.userFound(user, pass) == true){
-
+            //loads the dashboard
             Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 1055, 699);
@@ -71,6 +73,31 @@ public class loginController {
             stage.setScene(scene);
             stage.getScene().getWindow().centerOnScreen();
             stage.show();
+            //alerts the user of upcoming appointments
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Upcoming Appointments");
+            alert.setHeaderText("Upcoming");
+            //if no upcoming appointments, says no upcoming
+            if(DBAppointment.upcomingAppointments().size() == 0)
+                alert.setContentText("No upcoming Appointments");
+            //if there is at least one upcoming appointment, display a message containing info on the upcoming appointment
+            else{
+                    alert.setContentText("Upcoming Appointment: " + DBAppointment.upcomingAppointments().get(0).getID() +
+                            "\nTime: " + DBAppointment.upcomingAppointments().get(0).getStart());
+                }
+            Optional<ButtonType> result = alert.showAndWait();
+            //if there is more than 1 upcoming appointment, displays an alert for each upcoming appointment
+            if(DBAppointment.upcomingAppointments().size() > 1){
+                for(int i = 1; i < DBAppointment.upcomingAppointments().size(); i++){
+                     alert = new Alert(Alert.AlertType.INFORMATION);
+                     alert.setTitle("Upcoming Appointments");
+
+                      alert.setHeaderText("Upcoming");
+                      alert.setContentText("Upcoming Appointment: " + DBAppointment.upcomingAppointments().get(i).getID() +
+                                "\nTime: " + DBAppointment.upcomingAppointments().get(i).getStart());
+                      result = alert.showAndWait();
+                }
+            }
         }
         else
         {
