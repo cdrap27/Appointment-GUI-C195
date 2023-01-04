@@ -257,7 +257,7 @@ public class Appointment {
         return checkName;
     }
 
-    public static Boolean checkStartTime(ChoiceBox addStartTime){
+    public static Boolean checkStartTime(ChoiceBox addStartTime, DatePicker addStartDate){
         Boolean check = true;
              LocalTime time = (LocalTime) addStartTime.getSelectionModel().getSelectedItem();
         if(time == null){
@@ -270,18 +270,30 @@ public class Appointment {
         }
         LocalTime t1 = LocalTime.of(8, 0);
         LocalTime t2 = LocalTime.of(22,0);
-        if(time.isBefore(t1) || time.isAfter(t2)){
+        LocalDateTime startingStart = LocalDateTime.of(addStartDate.getValue(), t1);
+        ZonedDateTime zoneStart = startingStart.atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        zoneStart = zoneStart.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+
+        startingStart = zoneStart.toLocalDateTime();
+        LocalDateTime startingEnd;
+        ZonedDateTime zoneStartend = LocalDateTime.of(addStartDate.getValue(),t2).atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        zoneStartend = zoneStartend.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+        startingEnd = zoneStartend.toLocalDateTime();
+        LocalDateTime userStart = LocalDateTime.of(addStartDate.getValue(), (LocalTime) addStartTime.getValue());
+        LocalDateTime userEnd = LocalDateTime.of(addStartDate.getValue(), (LocalTime) addStartTime.getValue());
+        if(userEnd.isBefore(startingStart) || userEnd.isAfter(startingEnd)){
             check = false;
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Start Time Error");
-            errorAlert.setContentText("Start time is outside of business hours.");
+            errorAlert.setContentText("Start time is outside of business hours.\n" +"Business hours in your timezone are "
+                    + startingStart.toLocalTime() + "-" + startingEnd.toLocalTime());
             errorAlert.showAndWait();
             return check;
         }
         return check;
     }
 
-    public static Boolean checkEndTime(ChoiceBox addEndTime, ChoiceBox addStartTime){
+    public static Boolean checkEndTime(ChoiceBox addEndTime, ChoiceBox addStartTime, DatePicker addEndDate, DatePicker addStartDate){
             Boolean check = true;
             LocalTime time = (LocalTime) addEndTime.getSelectionModel().getSelectedItem();
             if(time == null){
@@ -295,11 +307,23 @@ public class Appointment {
 
         LocalTime t1 = LocalTime.of(8, 0);
         LocalTime t2 = LocalTime.of(22,0);
-        if(time.isBefore(t1) || time.isAfter(t2)){
+        LocalDateTime endingStart = LocalDateTime.of(addEndDate.getValue(), t1);
+        ZonedDateTime zoneEnd = endingStart.atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        zoneEnd = zoneEnd.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+
+       endingStart = zoneEnd.toLocalDateTime();
+       LocalDateTime endingEnd;
+        ZonedDateTime zoneEndEnd = LocalDateTime.of(addEndDate.getValue(),t2).atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        zoneEndEnd = zoneEndEnd.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
+        endingEnd = zoneEndEnd.toLocalDateTime();
+        LocalDateTime userStart = LocalDateTime.of(addEndDate.getValue(), (LocalTime) addStartTime.getValue());
+        LocalDateTime userEnd = LocalDateTime.of(addEndDate.getValue(), (LocalTime) addEndTime.getValue());
+        if(userEnd.isBefore(endingStart) || userEnd.isAfter(endingEnd)){
             check = false;
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("End Time Error");
-            errorAlert.setContentText("End time is outside of business hours.");
+            errorAlert.setContentText("End time is outside of business hours.\n" +"Business hours in your timezone are "
+            + endingStart.toLocalTime() + "-" + endingEnd.toLocalTime());
             errorAlert.showAndWait();
             return check;
         }

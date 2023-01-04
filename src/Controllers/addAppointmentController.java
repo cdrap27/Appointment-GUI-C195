@@ -8,10 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.ZoneId;
 import java.util.Optional;
+import java.util.TimeZone;
 
 public class addAppointmentController {
 
@@ -28,6 +31,8 @@ public class addAppointmentController {
     public TextField addLocation;
     public TextField addType;
     public Appointment addAnAppointment;
+    public Text estStart;
+    public Text estEnd;
 
 
 
@@ -38,6 +43,9 @@ public class addAppointmentController {
         addCustomerID.setItems(Model.Customers.customerNames(DAO.DBCustomers.getCustomerList()));
         addContactID.setItems(Model.Contacts.contactNames(DAO.DBContact.getContactList()));
         addUserID.setItems(Model.Users.userNames(DAO.DBUsers.getUserList()));
+        estStart.setText(ZoneId.systemDefault().getId());
+        estEnd.setText(ZoneId.systemDefault().getId());
+
     }
 
     public void onSave(ActionEvent actionEvent) {
@@ -100,12 +108,12 @@ public class addAppointmentController {
                 continued = false;
                 break;
             }
-            check = Model.Appointment.checkStartTime(addStartTime);
+            check = Model.Appointment.checkStartTime(addStartTime, addStartDate);
             if (check == false){
                 continued = false;
                 break;
             }
-            check = Model.Appointment.checkEndTime(addEndTime, addStartTime);
+            check = Model.Appointment.checkEndTime(addEndTime, addStartTime, addEndDate, addStartDate);
             if (check == false){
                 continued = false;
                 break;
