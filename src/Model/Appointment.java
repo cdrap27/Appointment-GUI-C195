@@ -483,20 +483,39 @@ public class Appointment {
     }
 
     /**
-     * uses a lambda expression to cycel through the appointments and change all times to local time
+     * Lambda Expression 1: uses a lambda expression to cycle through the appointments and change all times to local time
      * @param appointments  appointment list
      * @return  appointment list with updated times
      */
     public static ObservableList<Appointment> toLocalTime(ObservableList<Appointment> appointments){
         appointments.forEach(a ->{
-          ZonedDateTime zoneStart = a.getStart().atZone(ZoneId.of("UTC"));
+            ZonedDateTime zoneStart = a.getStart().atZone(ZoneId.of("UTC"));
           zoneStart = zoneStart.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
           a.setStart(zoneStart.toLocalDateTime());
           ZonedDateTime zoneEnd = a.getEnd().atZone(ZoneId.of("UTC"));
           zoneEnd = zoneEnd.withZoneSameInstant(ZoneId.of(System.getProperty("user.timezone")));
           a.setEnd(zoneEnd.toLocalDateTime());
+        });
+        return appointments;
+    }
 
-
+    /**
+     * Lambda Expression 2: uses a lambda expression to cycle through the appointments and change all times to UTC
+     * @param appointments  appointment list
+     * @return  appointment list with updated times
+     */
+    public static ObservableList<Appointment> toUTC(ObservableList<Appointment> appointments){
+        appointments.forEach(a ->{
+            System.out.println("" + a.getTitle() + " time is " + a.getStart());
+            ZonedDateTime zoneStart = a.getStart().atZone(ZoneId.of(System.getProperty("user.timezone")));
+            System.out.println(""+ zoneStart);
+            zoneStart = zoneStart.withZoneSameInstant(ZoneId.of("UTC"));
+            System.out.println(""+ zoneStart);
+            a.setStart(zoneStart.toLocalDateTime());
+            System.out.println("" + a.getStart());
+            ZonedDateTime zoneEnd = a.getEnd().atZone(ZoneId.of(System.getProperty("user.timezone")));
+            zoneEnd = zoneEnd.withZoneSameInstant(ZoneId.of("UTC"));
+            a.setEnd(zoneEnd.toLocalDateTime());
         });
         return appointments;
     }

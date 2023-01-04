@@ -40,8 +40,8 @@ public class DBAppointment {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime start = (LocalDateTime) rs.getObject("Start");
+                LocalDateTime end = (LocalDateTime) rs.getObject("End");
                 int customer = rs.getInt("Customer_ID");
                 int user = rs.getInt("User_ID");
                 int contact = rs.getInt("Contact_ID");
@@ -134,7 +134,7 @@ public class DBAppointment {
      * adds an appointment to the appointment list
      * @param a adds this appointment
      */
-    private static void addAppointmentSQL(Appointment a){
+    public static void addAppointmentSQL(Appointment a){
         duplicateAppointment = false;
         try{
             //accesses the database

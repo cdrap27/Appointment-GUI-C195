@@ -12,6 +12,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Optional;
 import java.util.TimeZone;
@@ -46,12 +49,24 @@ public class addAppointmentController {
         estStart.setText(ZoneId.systemDefault().getId());
         estEnd.setText(ZoneId.systemDefault().getId());
 
+
     }
 
-    public void onSave(ActionEvent actionEvent) {
+    public void onSave(ActionEvent actionEvent) throws IOException {
         Boolean check = checkData();
         if(check == true){
-            System.out.println("continue");
+            DAO.DBAppointment.getAppointmentList().add(addAppointmentForm());
+            DAO.DBAppointment.addAppointmentSQL(DAO.DBAppointment.getAppointmentList().get(DAO.DBAppointment.getAppointmentList().size()-1));
+            Appointment.toUTC(DAO.DBAppointment.getAppointmentList());
+            Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());
+            DBAppointment.appointmentSize = DBAppointment.appointmentSize+1;
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1055, 699);
+            stage.setTitle("Dashboard");
+            stage.setScene(scene);
+            stage.getScene().getWindow().centerOnScreen();
+            stage.show();
         }
 
 
@@ -146,5 +161,13 @@ public class addAppointmentController {
             check = false;
         }
         return continued;
+    }
+
+    public Appointment addAppointmentForm(){
+        Appointment appointment = new Appointment(DBAppointment.appointmentSize+1, addTitle.getText(), addDescription.getText(), addLocation.getText(),
+                addType.getText(), LocalDateTime.of(addStartDate.getValue(), (LocalTime)addStartTime.getValue()),
+                LocalDateTime.of(addEndDate.getValue(), (LocalTime)addEndTime.getValue()), Model.Customers.findCustomerID((String)addCustomerID.getValue()),
+                Model.Users.findUserID((String)addUserID.getValue()), Model.Contacts.findContactID((String)addContactID.getValue()));
+        return appointment;
     }
 }
