@@ -49,7 +49,7 @@ public class Dashboard {
     public TableColumn user;
     public TableColumn contact;
 
-    private static Appointment modifyApp;
+    public static Appointment modifyApp;
     public Button exitDash;
     public Text timeZone;
 
@@ -166,6 +166,7 @@ public class Dashboard {
 
     public void onModifyAppointment(ActionEvent actionEvent) throws IOException {
         if(!appointmentsTable.getSelectionModel().isEmpty()) {
+            modifyApp = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
             Parent root = FXMLLoader.load(getClass().getResource("../Views/modifyAppointment.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 784, 601);

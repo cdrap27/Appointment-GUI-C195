@@ -73,5 +73,14 @@ public class Contacts {
         }
         return -1;
     }
+
+    public static int getID(int contact){
+        for(int i = 0; i < DAO.DBContact.getContactList().size(); i++){
+            if(contact == DAO.DBContact.getContactList().get(i).getContactID()){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
 

@@ -151,6 +151,22 @@ public class Appointment {
         return time;
     }
 
+    public static int getTime(LocalDateTime time){
+        LocalTime t = time.toLocalTime();
+        int getTime;
+        for(int i = 0; i < time().size(); i++){
+            if(t.equals(time().get(i))){
+                getTime = i;
+                return getTime;
+            }
+            else if(t.isAfter(time().get(i)) && t.isBefore(time().get(i+1))){
+                getTime = i;
+                return getTime;
+            }
+        }
+        return 0;
+    }
+
     /**
      * checks
      */

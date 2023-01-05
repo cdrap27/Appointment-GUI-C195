@@ -1,5 +1,6 @@
 package Model;
 
+import DAO.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -101,6 +102,15 @@ public class Customers {
         for(int i = 0; i < DAO.DBCustomers.getCustomerList().size(); i ++){
             if(customerName.equals(DAO.DBCustomers.getCustomerList().get(i).getName())){
                 return DAO.DBCustomers.getCustomerList().get(i).getCustomerID();
+            }
+        }
+        return -1;
+    }
+
+    public static int getID(int customer){
+        for(int i = 0; i < DAO.DBCustomers.getCustomerList().size(); i++){
+            if(customer == DBCustomers.getCustomerList().get(i).getCustomerID()){
+                return i;
             }
         }
         return -1;

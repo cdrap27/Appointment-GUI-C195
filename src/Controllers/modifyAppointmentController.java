@@ -41,7 +41,6 @@ public class modifyAppointmentController {
 
     public void initialize(){
 
-        addAppointmentID.setText(Integer.toString(DBAppointment.appointmentSize+1));
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());
         addCustomerID.setItems(Model.Customers.customerNames(DAO.DBCustomers.getCustomerList()));
@@ -49,6 +48,20 @@ public class modifyAppointmentController {
         addUserID.setItems(Model.Users.userNames(DAO.DBUsers.getUserList()));
         estStart.setText(ZoneId.systemDefault().getId());
         estEnd.setText(ZoneId.systemDefault().getId());
+
+        Appointment temp = Dashboard.modifyApp;
+        addAppointmentID.setText(String.valueOf(temp.getID()));
+        addTitle.setText(temp.getTitle());
+        addDescription.setText(temp.getDescription());
+        addLocation.setText(temp.getLocation());
+        addType.setText(temp.getType());
+        addStartDate.setValue(temp.getStart().toLocalDate());
+        addEndDate.setValue(temp.getStart().toLocalDate());
+        addStartTime.setValue(Model.Appointment.time().get(Model.Appointment.getTime(temp.getStart())));
+        addEndTime.setValue(Model.Appointment.time().get(Model.Appointment.getTime(temp.getEnd())));
+        addContactID.setValue(Model.Contacts.contactNames(DAO.DBContact.getContactList()).get(Model.Contacts.getID(temp.getContact())));
+        addCustomerID.setValue(Model.Customers.customerNames(DAO.DBCustomers.getCustomerList()).get(Model.Customers.getID(temp.getCustomer())));
+        addUserID.setValue(Model.Users.userNames(DAO.DBUsers.getUserList()).get(Model.Users.getUser(temp.getUser())));
 
 
     }
