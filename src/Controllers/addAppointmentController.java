@@ -170,4 +170,8 @@ public class addAppointmentController {
                 Model.Users.findUserID((String)addUserID.getValue()), Model.Contacts.findContactID((String)addContactID.getValue()));
         return appointment;
     }
+
+    public void startDateSelect(ActionEvent actionEvent) {
+        addEndDate.setValue(addStartDate.getValue());
+    }
 }

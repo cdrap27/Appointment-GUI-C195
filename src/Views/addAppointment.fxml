@@ -34,8 +34,8 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <DatePicker fx:id="addStartDate" layoutX="165.0" layoutY="300.0" />
-      <DatePicker fx:id="addEndDate" layoutX="165.0" layoutY="339.0" />
+      <DatePicker fx:id="addStartDate" layoutX="165.0" layoutY="300.0" onAction="#startDateSelect" />
+      <DatePicker fx:id="addEndDate" disable="true" layoutX="165.0" layoutY="339.0" />
       <ChoiceBox fx:id="addStartTime" layoutX="420.0" layoutY="304.0" prefHeight="23.0" prefWidth="96.0" />
       <ChoiceBox fx:id="addEndTime" layoutX="420.0" layoutY="339.0" prefHeight="25.0" prefWidth="96.0" />
       <ChoiceBox fx:id="addContactID" layoutX="165.0" layoutY="377.0" prefHeight="25.0" prefWidth="174.0" />
