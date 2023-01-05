@@ -1,6 +1,7 @@
 package Model;
 
 import DAO.DBCustomers;
+import DAO.DBDivision;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -18,14 +19,18 @@ public class Customers {
     private String postalCode;
     private String phone;
     private int division;
+    private String divisionName;
+    private String country;
 
-    public Customers(int customerID, String name, String address, String postalCode, String phone, int division){
+    public Customers(int customerID, String name, String address, String postalCode, String phone, int division, String divisionName, String country){
         this.customerID = customerID;
         this.name = name;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
         this.division = division;
+        this.divisionName = divisionName;
+        this.country = country;
     }
 
     /**
@@ -54,6 +59,10 @@ public class Customers {
     public int getDivision(){
         return division;
     }
+
+    public String getDivisionName(){ return divisionName; }
+
+    public String getCountry(){ return country; }
 
     public static ObservableList<String> customerNames(ObservableList<Customers> customers){
         ObservableList<String> customerNames = FXCollections.observableArrayList();
@@ -93,6 +102,10 @@ public class Customers {
         this.division = division;
     }
 
+    public void setDivisionName(String divisionName) { this.divisionName = divisionName; }
+
+    public void setCountry(String countr) { this.country = country; }
+
     /**
      * gets customer id from customer name
      * @param customerName customer name
@@ -119,6 +132,15 @@ public class Customers {
             }
         }
         return -1;
+    }
+
+    public static String getDivision(int division){
+        for(int i = 0; i < DBDivision.getDivisionList().size(); i++){
+            if(division == DBDivision.getDivisionList().get(i).getDivisionID()){
+                return DBDivision.getDivisionList().get(i).getDivision();
+            }
+        }
+        return null;
     }
 
 }

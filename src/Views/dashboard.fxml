@@ -19,6 +19,8 @@
             <TableColumn fx:id="post" prefWidth="75.0" text="Postal Code" />
             <TableColumn fx:id="phone" prefWidth="85.0" text="Phone" />
             <TableColumn fx:id="division" prefWidth="94.0" text="Division ID" />
+            <TableColumn fx:id="country" prefWidth="75.0" text="Country" />
+            <TableColumn fx:id="divisionName" prefWidth="75.0" text="Division" />
         </columns>
       </TableView>
       <TableView fx:id="appointmentsTable" layoutX="64.0" layoutY="365.0" prefHeight="200.0" prefWidth="926.0">

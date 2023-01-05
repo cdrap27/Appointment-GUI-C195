@@ -46,4 +46,8 @@ public class DBDivision {
         System.out.println("" + divisionList.size() + " divisions added.");
 
     }
+
+    public static ObservableList<Division> getDivisionList(){
+        return divisionList;
+    }
 }

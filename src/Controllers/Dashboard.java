@@ -53,6 +53,8 @@ public class Dashboard {
     public static int appointmentIndex;
     public Button exitDash;
     public Text timeZone;
+    public TableColumn country;
+    public TableColumn divisionName;
 
     // public ObservableList<Appointment> weekAppointment;
 
@@ -68,6 +70,8 @@ public class Dashboard {
         post.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         division.setCellValueFactory(new PropertyValueFactory<>("division"));
+        divisionName.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
+        country.setCellValueFactory(new PropertyValueFactory<>("country"));
 
         //populate appointments table
         appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());

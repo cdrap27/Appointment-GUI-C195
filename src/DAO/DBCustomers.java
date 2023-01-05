@@ -3,6 +3,7 @@ package DAO;
 import Database.DBConnection;
 import Model.Appointment;
 import Model.Customers;
+import Model.Division;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -40,8 +41,10 @@ public class DBCustomers {
                 String post = rs.getString("Postal_Code");
                 String phone = rs.getString("Phone");
                 int division = rs.getInt("Division_ID");
+                String divisionName = Customers.getDivision(division);
+                String country = "hank";
                 //creates customer
-                Customers c = new Customers(id, name, address, post, phone,  division);
+                Customers c = new Customers(id, name, address, post, phone,  division, divisionName, country);
                 //adds customer
                 customerList.add(c);
 
@@ -147,11 +150,11 @@ public class DBCustomers {
      * sets the test data
      */
     private static void addTestData(){
-        Customers c = new Customers(1, "Daddy Warbucks", "1919 Boardwalk", "01291", "866-908-1875", 29);
+        Customers c = new Customers(1, "Daddy Warbucks", "1919 Boardwalk", "01291", "866-908-1875", 29, Customers.getDivision(29), "hank");
         addCustomerSQL(c);
-        c = new Customers(2, "Lady McAnderson", "526 Madeup Street", "AF19B", "186-389-38392", 103);
+        c = new Customers(2, "Lady McAnderson", "526 Madeup Street", "AF19B", "186-389-38392", 103, Customers.getDivision(103), "hank");
         addCustomerSQL(c);
-        c = new Customers(3, "Dudley Do-Right", "2016 Money Lane", "28198", "286-286-2866", 60);
+        c = new Customers(3, "Dudley Do-Right", "2016 Money Lane", "28198", "286-286-2866", 60, Customers.getDivision(60), "hank");
         addCustomerSQL(c);
 
 
