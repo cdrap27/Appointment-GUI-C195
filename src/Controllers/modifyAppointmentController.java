@@ -40,6 +40,7 @@ public class modifyAppointmentController {
 
 
     public void initialize(){
+
         addAppointmentID.setText(Integer.toString(DBAppointment.appointmentSize+1));
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());

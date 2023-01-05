@@ -165,13 +165,21 @@ public class Dashboard {
     }
 
     public void onModifyAppointment(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Views/modifyAppointment.fxml"));
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 784, 601);
-        stage.setTitle("Modify Appointment");
-        stage.setScene(scene);
-        stage.getScene().getWindow().centerOnScreen();
-        stage.show();
+        if(!appointmentsTable.getSelectionModel().isEmpty()) {
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/modifyAppointment.fxml"));
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 784, 601);
+            stage.setTitle("Modify Appointment");
+            stage.setScene(scene);
+            stage.getScene().getWindow().centerOnScreen();
+            stage.show();
+        }
+        else{
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Nothing Selected");
+            errorAlert.setContentText("No Appointment Selected.");
+            errorAlert.showAndWait();
+        }
     }
 
     /**
