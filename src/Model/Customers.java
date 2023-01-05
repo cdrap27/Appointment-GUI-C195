@@ -107,6 +107,11 @@ public class Customers {
         return -1;
     }
 
+    /**
+     * finds the position where the customer is located
+     * @param customer customer
+     * @return customer position
+     */
     public static int getID(int customer){
         for(int i = 0; i < DAO.DBCustomers.getCustomerList().size(); i++){
             if(customer == DBCustomers.getCustomerList().get(i).getCustomerID()){

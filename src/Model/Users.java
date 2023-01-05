@@ -60,6 +60,11 @@ public class Users {
         return userNames;
     }
 
+    /**
+     * finds a user id from a user name
+     * @param userName user name
+     * @return id
+     */
     public static int findUserID(String userName){
         for(int i = 0; i < DAO.DBUsers.getUserList().size(); i ++){
             if(userName.equals(DAO.DBUsers.getUserList().get(i).getUserName())){
@@ -69,6 +74,11 @@ public class Users {
         return -1;
     }
 
+    /**
+     * finds the position in the list where the user is
+     * @param user user
+     * @return user position
+     */
     public static int getUser(int user){
         for(int i = 0; i < DAO.DBUsers.getUserList().size(); i++){
             if(user == DAO.DBUsers.getUserList().get(i).getUserID()){

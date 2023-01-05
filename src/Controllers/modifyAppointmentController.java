@@ -48,7 +48,7 @@ public class modifyAppointmentController {
         addUserID.setItems(Model.Users.userNames(DAO.DBUsers.getUserList()));
         estStart.setText(ZoneId.systemDefault().getId());
         estEnd.setText(ZoneId.systemDefault().getId());
-
+        //creates a temporary appointment and populates all forms with data from the temporary appointment
         Appointment temp = Dashboard.modifyApp;
         addAppointmentID.setText(String.valueOf(temp.getID()));
         addTitle.setText(temp.getTitle());

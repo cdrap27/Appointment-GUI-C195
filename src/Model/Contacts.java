@@ -65,6 +65,11 @@ public class Contacts {
         return contactNames;
     }
 
+    /**
+     * finds the contact id for a given contact
+     * @param contactName contact name
+     * @return contact id
+     */
     public static int findContactID(String contactName){
         for(int i = 0; i < DAO.DBContact.getContactList().size(); i ++){
             if(contactName.equals(DAO.DBContact.getContactList().get(i).getContactName())){
@@ -74,6 +79,11 @@ public class Contacts {
         return -1;
     }
 
+    /**
+     * finds the position where the contact is located
+     * @param contact contact
+     * @return contact position
+     */
     public static int getID(int contact){
         for(int i = 0; i < DAO.DBContact.getContactList().size(); i++){
             if(contact == DAO.DBContact.getContactList().get(i).getContactID()){
