@@ -164,7 +164,14 @@ public class Dashboard {
         stage.show();
     }
 
-    public void onModifyAppointment(ActionEvent actionEvent) {
+    public void onModifyAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/modifyAppointment.fxml"));
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 784, 601);
+        stage.setTitle("Modify Appointment");
+        stage.setScene(scene);
+        stage.getScene().getWindow().centerOnScreen();
+        stage.show();
     }
 
     /**
