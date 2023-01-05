@@ -232,26 +232,29 @@ public class DBAppointment {
     private static void addTestData(){
         //test data for this week
         Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",
-                LocalDateTime.now().plusDays(1), LocalDateTime.now(),  2, 2, 3);
+                LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(1).plusMinutes(15),
+                2, 2, 3);
         addAppointmentSQL(a);
         //test for this month
-        a = new Appointment(4, "month", "testing more", "Hawaii", "expensive", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(10).plusHours(1),
+        a = new Appointment(4, "month", "testing more", "Hawaii", "expensive",
+                LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(10).plusHours(1),
                 3, 2, 3);
         addAppointmentSQL(a);
         //another month test
         a = new Appointment(5, "month 2", "gotta test", "Mall", "regualr",
-                LocalDateTime.now().plusDays(15), LocalDateTime.now(), 2, 2, 3);
+                LocalDateTime.now().plusDays(15), LocalDateTime.now().plusDays(15).plusMinutes(10),
+                2, 2, 3);
         addAppointmentSQL(a);
         //default data 1
         a = new Appointment(1, "title", "description", "location", "Planning Session",
-                LocalDateTime.of(2023, 05, 28, 23, 00, 00),
-                LocalDateTime.of(2023, 05, 28, 23, 15, 00),
+                LocalDateTime.now().minusMinutes(5),
+                LocalDateTime.now(),
                  1, 1, 3);
         addAppointmentSQL(a);
         //default data 2
         a = new Appointment(2, "title", "description", "location", "De-Briefing",
-                LocalDateTime.of(2020, 05, 29, 12, 00, 00),
-                LocalDateTime.of(2020, 05, 29, 13, 00, 00),
+                LocalDateTime.now().plusMinutes(14),
+                LocalDateTime.now().plusMinutes(15),
                  1, 1, 3);
         addAppointmentSQL(a);
 
