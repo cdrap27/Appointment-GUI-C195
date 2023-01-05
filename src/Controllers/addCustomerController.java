@@ -29,11 +29,19 @@ public class addCustomerController {
     public ChoiceBox addCustomerDivision;
     public TextField addCustomerDivisionID;
 
+    /**
+     * initializes the add customer screen
+     */
     public void initialize(){
         addCustomerID.setText(String.valueOf(DBCustomers.customerSize +1));
         addCustomerCountry.setItems(Countries.countryNames(DBCountries.getCountryList()));
     }
 
+    /**
+     * on save, checks if data entered is correct, adds data if it is, and returns to the dashboard
+     * @param actionEvent action event
+     * @throws IOException io exception
+     */
     public void onSave(ActionEvent actionEvent) throws IOException {
         if(checkData() == true){
             addCustomerForm();
@@ -51,6 +59,11 @@ public class addCustomerController {
         }
     }
 
+    /**
+     * returns to the dashboard upon hitting cancel.
+     * @param actionEvent action event
+     * @throws IOException io exception
+     */
     public void onCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cancel?");
@@ -68,18 +81,29 @@ public class addCustomerController {
         }
     }
 
+    /**
+     * sets divsion box upon selecting a country
+     * @param event event
+     */
     public void countrySelected(ActionEvent event) {
         addCustomerDivisionID.clear();
         addCustomerDivision.setItems(Division.divisionNames((String)addCustomerCountry.getSelectionModel().getSelectedItem()));
-        System.out.println(addCustomerDivision.getValue());
     }
 
+    /**
+     * sets division id upon selecting a division
+     * @param actionEvent action event
+     */
     public void divisionSelected(ActionEvent actionEvent) {
         addCustomerDivisionID.clear();
         if(addCustomerDivision.getValue() != null)
         addCustomerDivisionID.setText(String.valueOf(Division.getDivisionID((String)addCustomerDivision.getSelectionModel().getSelectedItem())));
     }
 
+    /**
+     * checks data for errors
+     * @return returns boolean
+     */
     public Boolean checkData(){
         Boolean proceed = true;
         Boolean check = true;
@@ -113,6 +137,10 @@ public class addCustomerController {
         return check;
     }
 
+    /**
+     * creates a customer with the data entered
+     * @return customer
+     */
     public Customers addCustomerForm(){
         String name = addCustomerName.getText();
         String address = addCustomerAddress.getText();
