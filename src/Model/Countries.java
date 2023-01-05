@@ -1,5 +1,6 @@
 package Model;
 
+import DAO.DBCountries;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -37,5 +38,22 @@ public class Countries {
 
     public String getCountryName(){
         return countryName;    }
+
+    public static ObservableList<String> countryNames(ObservableList<Countries> countries){
+        ObservableList<String> countryNames = FXCollections.observableArrayList();
+        countries.forEach(c -> {
+            countryNames.add(c.countryName);
+        });
+        return countryNames;
+    }
+
+    public static int getCountryID(String countryName){
+        for(int i =0; i < DBCountries.getCountryList().size(); i++){
+            if(countryName.equals(DBCountries.getCountryList().get(i).getCountryName())){
+                return DBCountries.getCountryList().get(i).getCountryID();
+            }
+        }
+        return -1;
+    }
 }
 

@@ -34,6 +34,8 @@ public class Dashboard {
     public TableColumn post;
     public TableColumn phone;
     public TableColumn division;
+    public TableColumn country;
+    public TableColumn divisionName;
 
     //appointment table
     public TableView appointmentsTable;
@@ -53,8 +55,7 @@ public class Dashboard {
     public static int appointmentIndex;
     public Button exitDash;
     public Text timeZone;
-    public TableColumn country;
-    public TableColumn divisionName;
+
 
     // public ObservableList<Appointment> weekAppointment;
 
@@ -115,7 +116,14 @@ public class Dashboard {
         appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());
     }
 
-    public void onAddCustomer(ActionEvent actionEvent) {
+    public void onAddCustomer(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/addCustomer.fxml"));
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 528, 532);
+        stage.setTitle("Add Customer");
+        stage.setScene(scene);
+        stage.getScene().getWindow().centerOnScreen();
+        stage.show();
     }
 
     public void onModifyCustomer(ActionEvent actionEvent) {
