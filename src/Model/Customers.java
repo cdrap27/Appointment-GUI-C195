@@ -5,6 +5,9 @@ import DAO.DBCustomers;
 import DAO.DBDivision;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -158,5 +161,84 @@ public class Customers {
             }
         }
         return null;
+    }
+
+    //checks
+    public static Boolean checkName(TextField nameField){
+        String name = nameField.getText();
+        Boolean check = true;
+        if(name.length()<1){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Name Error");
+            errorAlert.setContentText("Name Error");
+            errorAlert.showAndWait();
+        }
+        return check;
+    }
+
+    public static Boolean checkAddress(TextField nameField){
+        String name = nameField.getText();
+        Boolean check = true;
+        if(name.length()<1){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Address Error");
+            errorAlert.setContentText("Address Error");
+            errorAlert.showAndWait();
+        }
+        return check;
+    }
+
+    public static Boolean checkPost(TextField nameField){
+        String name = nameField.getText();
+        Boolean check = true;
+        if(name.length()<1){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Postal Code Error");
+            errorAlert.setContentText("Postal Code Error");
+            errorAlert.showAndWait();
+        }
+        return check;
+    }
+
+    public static Boolean checkPhone(TextField nameField){
+        String name = nameField.getText();
+        Boolean check = true;
+        if(name.length()<1){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Phone Error");
+            errorAlert.setContentText("Phone Error");
+            errorAlert.showAndWait();
+        }
+        return check;
+    }
+
+    public static Boolean checkCountry(ChoiceBox country){
+
+        Boolean check = true;
+        if(country.getValue() == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Country Error");
+            errorAlert.setContentText("Country Error");
+            errorAlert.showAndWait();
+        }
+        return check;
+    }
+
+    public static Boolean checkDivision(ChoiceBox country){
+
+        Boolean check = true;
+        if(country.getValue() == null){
+            check = false;
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Division Error");
+            errorAlert.setContentText("Division Error");
+            errorAlert.showAndWait();
+        }
+        return check;
     }
 }
