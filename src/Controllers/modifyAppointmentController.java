@@ -69,11 +69,14 @@ public class modifyAppointmentController {
     public void onSave(ActionEvent actionEvent) throws IOException {
         Boolean check = checkData();
         if(check == true){
-            DAO.DBAppointment.getAppointmentList().add(addAppointmentForm());
-            DAO.DBAppointment.addAppointmentSQL(DAO.DBAppointment.getAppointmentList().get(DAO.DBAppointment.getAppointmentList().size()-1));
+            int i = Dashboard.appointmentIndex;
+            DBAppointment.getAppointmentList().set(i, addAppointmentForm());
+           i = Integer.parseInt(addAppointmentID.getText());
+            DAO.DBAppointment.deleteAppointment(i);
+            DAO.DBAppointment.addAppointmentSQL(addAppointmentForm());
             Appointment.toUTC(DAO.DBAppointment.getAppointmentList());
             Appointment.toLocalTime(DAO.DBAppointment.getAppointmentList());
-            DBAppointment.appointmentSize = DBAppointment.appointmentSize+1;
+
             Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 1055, 699);
@@ -89,7 +92,7 @@ public class modifyAppointmentController {
     public void onCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cancel?");
-        alert.setContentText("Are you sure you want to cancel adding appointment?");
+        alert.setContentText("Are you sure you want to cancel modifying appointment?");
         ButtonType CANCEL = new ButtonType("Cancel");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK){
@@ -178,7 +181,7 @@ public class modifyAppointmentController {
     }
 
     public Appointment addAppointmentForm(){
-        Appointment appointment = new Appointment(DBAppointment.appointmentSize+1, addTitle.getText(), addDescription.getText(), addLocation.getText(),
+        Appointment appointment = new Appointment(Dashboard.modifyApp.getID(), addTitle.getText(), addDescription.getText(), addLocation.getText(),
                 addType.getText(), LocalDateTime.of(addStartDate.getValue(), (LocalTime)addStartTime.getValue()),
                 LocalDateTime.of(addEndDate.getValue(), (LocalTime)addEndTime.getValue()), Model.Customers.findCustomerID((String)addCustomerID.getValue()),
                 Model.Users.findUserID((String)addUserID.getValue()), Model.Contacts.findContactID((String)addContactID.getValue()));

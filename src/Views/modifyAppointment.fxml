@@ -29,7 +29,7 @@
         <Text layoutX="381.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
         <Button fx:id="save" layoutX="610.0" layoutY="533.0" mnemonicParsing="false" onAction="#onSave" text="Save" />
         <Button fx:id="cancel" layoutX="523.0" layoutY="533.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-        <Text layoutX="285.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Appointment">
+        <Text layoutX="285.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ModifyAppointment">
             <font>
                 <Font size="17.0" />
             </font>

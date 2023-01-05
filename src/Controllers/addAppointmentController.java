@@ -40,6 +40,8 @@ public class addAppointmentController {
 
 
     public void initialize(){
+        Dashboard.modifyApp = new Appointment(DBAppointment.appointmentSize+1, "blank", "blank", "blank", "blank",
+                LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
         addAppointmentID.setText(Integer.toString(DBAppointment.appointmentSize+1));
         addStartTime.setItems(Model.Appointment.time());
         addEndTime.setItems(Model.Appointment.time());

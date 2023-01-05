@@ -1,5 +1,6 @@
 package Model;
 
+import Controllers.Dashboard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -395,72 +396,82 @@ public class Appointment {
 
         LocalDateTime startDate2 = LocalDateTime.of(startDate, startTime);
         LocalDateTime endDate2 = LocalDateTime.of(endDate, endTime);
+
         int customerID = Model.Customers.findCustomerID((String)addCustomer.getSelectionModel().getSelectedItem());
         for(int i = 0; i < DAO.DBAppointment.getAppointmentList().size(); i++) {
-            if (DAO.DBAppointment.getAppointmentList().get(i).getCustomer() == customerID) {
-                if (startDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
-                    if (startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
-                        check = false;
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setHeaderText("Appointment Error");
-                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                        errorAlert.showAndWait();
-                        return check;
-                    }
-                }
-                if(endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
-                    if(endDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
-                        check = false;
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setHeaderText("Appointment Error");
-                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                        errorAlert.showAndWait();
-                        return check;
-                    }
-                }
-                if(startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
-                    if(endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
-                        check = false;
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setHeaderText("Appointment Error");
-                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                        errorAlert.showAndWait();
-                        return check;
-                    }
-                }
-                if(startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
-                    check = false;
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setHeaderText("Appointment Error");
-                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                    errorAlert.showAndWait();
-                    return check;
-                }
-                if(endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
-                    check = false;
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setHeaderText("Appointment Error");
-                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                    errorAlert.showAndWait();
-                    return check;
-                }
-                if(endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())){
-                    check = false;
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setHeaderText("Appointment Error");
-                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                    errorAlert.showAndWait();
-                    return check;
-                }
-                if(startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())){
-                    check = false;
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setHeaderText("Appointment Error");
-                    errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
-                    errorAlert.showAndWait();
-                    return check;
-                }
+            if(Dashboard.modifyApp.getID() != DAO.DBAppointment.getAppointmentList().get(i).getID()) {
+                if (DAO.DBAppointment.getAppointmentList().get(i).getCustomer() == customerID) {
+                    if (startDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                        if (startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                            check = false;
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setHeaderText("Appointment Error");
+                            errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                            errorAlert.showAndWait();
+                            return check;
 
+                        }
+                    }
+                    if (endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                        if (endDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                            check = false;
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setHeaderText("Appointment Error");
+                            errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                            errorAlert.showAndWait();
+                            return check;
+
+                        }
+                    }
+                    if (startDate2.isBefore(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                        if (endDate2.isAfter(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                            check = false;
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setHeaderText("Appointment Error");
+                            errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                            errorAlert.showAndWait();
+                            return check;
+
+                        }
+                    }
+                    if (startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+
+                    }
+                    if (endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+
+                    }
+                    if (endDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getEnd())) {
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+                    }
+
+                    if (startDate2.equals(DAO.DBAppointment.getAppointmentList().get(i).getStart())) {
+                        check = false;
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Appointment Error");
+                        errorAlert.setContentText("Appointment overlaps with Appointment: " + DAO.DBAppointment.getAppointmentList().get(i).getID());
+                        errorAlert.showAndWait();
+                        return check;
+
+                    }
+
+                }
             }
         }
         return check;
@@ -522,13 +533,9 @@ public class Appointment {
      */
     public static ObservableList<Appointment> toUTC(ObservableList<Appointment> appointments){
         appointments.forEach(a ->{
-            System.out.println("" + a.getTitle() + " time is " + a.getStart());
             ZonedDateTime zoneStart = a.getStart().atZone(ZoneId.of(System.getProperty("user.timezone")));
-            System.out.println(""+ zoneStart);
             zoneStart = zoneStart.withZoneSameInstant(ZoneId.of("UTC"));
-            System.out.println(""+ zoneStart);
             a.setStart(zoneStart.toLocalDateTime());
-            System.out.println("" + a.getStart());
             ZonedDateTime zoneEnd = a.getEnd().atZone(ZoneId.of(System.getProperty("user.timezone")));
             zoneEnd = zoneEnd.withZoneSameInstant(ZoneId.of("UTC"));
             a.setEnd(zoneEnd.toLocalDateTime());
