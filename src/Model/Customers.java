@@ -1,5 +1,6 @@
 package Model;
 
+import DAO.DBCountries;
 import DAO.DBCustomers;
 import DAO.DBDivision;
 import javafx.collections.FXCollections;
@@ -21,6 +22,7 @@ public class Customers {
     private int division;
     private String divisionName;
     private String country;
+    public static String customerCountryName;
 
     public Customers(int customerID, String name, String address, String postalCode, String phone, int division, String divisionName, String country){
         this.customerID = customerID;
@@ -134,13 +136,27 @@ public class Customers {
         return -1;
     }
 
+    /**
+     * find the division name based on the division id
+     * @param division division id
+     * @return division name
+     */
     public static String getDivision(int division){
         for(int i = 0; i < DBDivision.getDivisionList().size(); i++){
             if(division == DBDivision.getDivisionList().get(i).getDivisionID()){
+                customerCountryName = getCountry(DBDivision.getDivisionList().get(i).getCountryID());
                 return DBDivision.getDivisionList().get(i).getDivision();
             }
         }
         return null;
     }
 
+    public static String getCountry(int countryID){
+        for(int i = 0; i < DBCountries.getCountryList().size(); i++){
+            if(countryID == DBCountries.getCountryList().get(i).getCountryID()){
+                return DBCountries.getCountryList().get(i).getCountryName();
+            }
+        }
+        return null;
+    }
 }

@@ -44,4 +44,8 @@ public class DBCountries {
         System.out.println("" + countryList.size() + " countries added.");
 
     }
+
+    public static ObservableList<Countries> getCountryList(){
+        return countryList;
+    }
 }

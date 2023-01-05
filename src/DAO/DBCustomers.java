@@ -42,7 +42,7 @@ public class DBCustomers {
                 String phone = rs.getString("Phone");
                 int division = rs.getInt("Division_ID");
                 String divisionName = Customers.getDivision(division);
-                String country = "hank";
+                String country = Customers.customerCountryName;
                 //creates customer
                 Customers c = new Customers(id, name, address, post, phone,  division, divisionName, country);
                 //adds customer
