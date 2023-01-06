@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class addCustomerController {
+public class modifyCustomerController {
     public TextField addCustomerID;
     public TextField addCustomerName;
     public TextField addCustomerAddress;
@@ -28,13 +28,23 @@ public class addCustomerController {
     public ChoiceBox addCustomerCountry;
     public ChoiceBox addCustomerDivision;
     public TextField addCustomerDivisionID;
+    public Boolean startup;
 
     /**
      * initializes the add customer screen
      */
     public void initialize(){
-        addCustomerID.setText(String.valueOf(DBCustomers.customerSize +1));
+        startup = true;
+        addCustomerID.setText(String.valueOf(Dashboard.modifyCust.getCustomerID()));
         addCustomerCountry.setItems(Countries.countryNames(DBCountries.getCountryList()));
+        addCustomerCountry.setValue(Dashboard.modifyCust.getCountry());
+        addCustomerDivision.setItems(Division.divisionNames((String)addCustomerCountry.getSelectionModel().getSelectedItem()));
+        addCustomerDivision.setValue(Dashboard.modifyCust.getDivisionName());
+        addCustomerDivisionID.setText(String.valueOf(Dashboard.modifyCust.getDivision()));
+        addCustomerName.setText(Dashboard.modifyCust.getName());
+        addCustomerAddress.setText(Dashboard.modifyCust.getAddress());
+        addCustomerPost.setText(Dashboard.modifyCust.getPostalCode());
+        addCustomerPhone.setText(Dashboard.modifyCust.getPhone());
     }
 
     /**
@@ -45,9 +55,9 @@ public class addCustomerController {
     public void onSave(ActionEvent actionEvent) throws IOException {
         if(checkData() == true){
             addCustomerForm();
-            DBCustomers.getCustomerList().add(addCustomerForm());
+            DBCustomers.getCustomerList().remove(Dashboard.customerIndex);
+            DBCustomers.getCustomerList().add(Dashboard.customerIndex, addCustomerForm());
             DBCustomers.addCustomerSQL(addCustomerForm());
-            DBCustomers.customerSize = DBCustomers.customerSize+1;
             Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 1055, 699);
@@ -67,7 +77,7 @@ public class addCustomerController {
     public void onCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cancel?");
-        alert.setContentText("Are you sure you want to cancel adding customer?");
+        alert.setContentText("Are you sure you want to cancel modifying customer?");
         ButtonType CANCEL = new ButtonType("Cancel");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -87,7 +97,8 @@ public class addCustomerController {
      */
     public void countrySelected(ActionEvent event) {
         addCustomerDivisionID.clear();
-        addCustomerDivision.setItems(Division.divisionNames((String)addCustomerCountry.getSelectionModel().getSelectedItem()));
+        if(startup == false)
+         addCustomerDivision.setItems(Division.divisionNames((String)addCustomerCountry.getSelectionModel().getSelectedItem()));
     }
 
     /**
@@ -96,8 +107,10 @@ public class addCustomerController {
      */
     public void divisionSelected(ActionEvent actionEvent) {
         addCustomerDivisionID.clear();
+        if(startup == false)
         if(addCustomerDivision.getValue() != null)
-        addCustomerDivisionID.setText(String.valueOf(Division.getDivisionID((String)addCustomerDivision.getSelectionModel().getSelectedItem())));
+           addCustomerDivisionID.setText(String.valueOf(Division.getDivisionID((String)addCustomerDivision.getSelectionModel().getSelectedItem())));
+        startup = false;
     }
 
     /**
@@ -146,10 +159,10 @@ public class addCustomerController {
         String address = addCustomerAddress.getText();
         String post = addCustomerPost.getText();
         String phone = addCustomerPhone.getText();
-        int divisionID = DBCustomers.customerSize +1;
+        int divisionID = Dashboard.modifyCust.getCustomerID();
         String country = (String)addCustomerCountry.getSelectionModel().getSelectedItem();
         String division =(String) addCustomerDivision.getSelectionModel().getSelectedItem();
-        Customers c = new Customers(DBCustomers.customerSize+1, name, address, post,
+        Customers c = new Customers(divisionID, name, address, post,
                 phone, Division.getDivisionID((String)addCustomerDivision.getSelectionModel().getSelectedItem()), division, country);
 
         return c;

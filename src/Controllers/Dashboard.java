@@ -37,6 +37,9 @@ public class Dashboard {
     public TableColumn country;
     public TableColumn divisionName;
 
+    public static Customers modifyCust;
+    public static int customerIndex;
+
     //appointment table
     public TableView appointmentsTable;
 
@@ -126,7 +129,25 @@ public class Dashboard {
         stage.show();
     }
 
-    public void onModifyCustomer(ActionEvent actionEvent) {
+    public void onModifyCustomer(ActionEvent actionEvent) throws IOException {
+        if(!customersTable.getSelectionModel().isEmpty()){
+            modifyCust = (Customers)customersTable.getSelectionModel().getSelectedItem();
+            customerIndex = customersTable.getSelectionModel().getSelectedIndex();
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/modifyCustomer.fxml"));
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 528, 532);
+            stage.setTitle("Modify Customer");
+            stage.setScene(scene);
+            stage.getScene().getWindow().centerOnScreen();
+            stage.show();
+        }
+        else
+        {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Nothing Selected");
+            errorAlert.setContentText("Nothing Selected to Modify");
+            errorAlert.showAndWait();
+        }
     }
 
     /**
