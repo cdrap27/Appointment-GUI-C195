@@ -1,6 +1,7 @@
 package Model;
 
 import Controllers.Dashboard;
+import DAO.DBAppointment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -565,6 +566,15 @@ public class Appointment {
         return getTypeAppointments;
     }
 
+    public static ObservableList<Appointment> getMonths(int month){
+        ObservableList<Appointment> getMonths = FXCollections.observableArrayList();
+        DBAppointment.getAppointmentList().forEach(a ->{
+            if(a.getStart().getMonth().getValue() == month){
+                getMonths.add(a);
+            }
+        });
+        return getMonths;
+    }
 
 
 }
