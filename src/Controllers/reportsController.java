@@ -22,10 +22,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class reportsController {
+    //reports table 1
     public ToggleGroup customerSelecter;
     public RadioButton type;
     public RadioButton month;
     public RadioButton all;
+
     public TableView customerReport;
     public TableColumn appointmentsID;
     public TableColumn title;
@@ -68,10 +70,13 @@ public class reportsController {
     public TableColumn country;
     public TableColumn divisionName;
     public ChoiceBox customerSelect;
+
     public Button exit;
     public Button dashboard;
 
-
+    /**
+     * initializes the page
+     */
     public void initialize(){
         //populate table1
         customerReport.setItems(DAO.DBAppointment.getAppointmentList());
@@ -95,6 +100,10 @@ public class reportsController {
         customerSelect.setItems(Countries.countryNames(DBCountries.getCountryList()));
     }
 
+    /**
+     * on selecting type, populates choice box
+     * @param actionEvent type
+     */
     public void onType(ActionEvent actionEvent) {
         customerReport.setItems(null);
         customerTableChoice.setItems(Appointment.getTypes(DAO.DBAppointment.getAppointmentList()));
@@ -102,18 +111,30 @@ public class reportsController {
 
     }
 
+    /**
+     * on selecting month, populates choice box
+     * @param actionEvent month
+     */
     public void onMonth(ActionEvent actionEvent) {
         customerReport.setItems(null);
         customerTableChoice.setItems(months());
         numberOfAppointments.setText(null);
     }
 
+    /**
+     * selects all
+     * @param actionEvent on all
+     */
     public void onAll(ActionEvent actionEvent) {
         customerTableChoice.setItems(null);
         customerReport.setItems(DBAppointment.getAppointmentList());
         numberOfAppointments.setText(String.valueOf(DBAppointment.getAppointmentList().size()));
     }
 
+    /**
+     * populates table one based one choicebox selection
+     * @param actionEvent   choicebox selection
+     */
     public void onCustomerTableChoice(ActionEvent actionEvent) {
         if(type.isSelected()){
             customerReport.setItems(Appointment.getTypeAppointments((String)customerTableChoice.getValue()));
@@ -125,6 +146,10 @@ public class reportsController {
         }
     }
 
+    /**
+     * observable list of months
+     * @return months
+     */
     public ObservableList<String> months(){
         ObservableList<String> months = FXCollections.observableArrayList();
         months.addAll("January", "February", "March", "April", "May", "June", "July",
@@ -132,6 +157,10 @@ public class reportsController {
         return months;
     }
 
+    /**
+     * on selecting contact, populates the second table
+     * @param actionEvent contact select
+     */
     public void onContactSelect(ActionEvent actionEvent) {
        contactSchedule.setItems(Appointment.getContactSchedule(Contacts.findContactID((String)contactSelect.getSelectionModel().getSelectedItem())));
         appointmentsID2.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -147,6 +176,10 @@ public class reportsController {
         contactsAppointments.setText(String.valueOf(Appointment.getContactSchedule(Contacts.findContactID((String)contactSelect.getSelectionModel().getSelectedItem())).size()));
     }
 
+    /**
+     * on selecting a country, returns customers from that country
+     * @param actionEvent country select
+     */
     public void onCustomerSelect(ActionEvent actionEvent) {
         customerByCountry.setItems(Customers.customersByCountry((String)customerSelect.getSelectionModel().getSelectedItem()));
 
@@ -162,6 +195,11 @@ public class reportsController {
         numberOfCustomers.setText(String.valueOf(Customers.customersByCountry((String)customerSelect.getSelectionModel().getSelectedItem()).size()));
     }
 
+    /**
+     * returns to the dashboard
+     * @param actionEvent dashboard
+     * @throws IOException ioexception
+     */
     public void onDashboard(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Dashboard?");
@@ -179,6 +217,10 @@ public class reportsController {
         }
     }
 
+    /**
+     * exits the program
+     * @param actionEvent exit
+     */
     public void onExit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit?");
