@@ -576,5 +576,14 @@ public class Appointment {
         return getMonths;
     }
 
+    public static ObservableList<Appointment> getContactSchedule(int contactID){
+        ObservableList<Appointment> getContactSchedule = FXCollections.observableArrayList();
+        DAO.DBAppointment.getAppointmentList().forEach(a ->{
+            if(a.getContact() == contactID){
+                getContactSchedule.add(a);
+            }
+        });
+        return getContactSchedule;
+    }
 
 }

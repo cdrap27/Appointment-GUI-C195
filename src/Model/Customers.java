@@ -241,4 +241,15 @@ public class Customers {
         }
         return check;
     }
+
+    public static ObservableList<Customers> customersByCountry(String country){
+        ObservableList<Customers> customersByCountry = FXCollections.observableArrayList();
+        DAO.DBCustomers.getCustomerList().forEach(c ->{
+            System.out.println("" + c.getCountry() + " input is " + country);
+            if(c.getCountry().equals(country)){
+                customersByCountry.add(c);
+            }
+        });
+        return customersByCountry;
+    }
 }
