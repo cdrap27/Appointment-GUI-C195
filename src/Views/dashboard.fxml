@@ -62,5 +62,6 @@
       <Button fx:id="deleteAppointment" layoutX="179.0" layoutY="575.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
       <Button fx:id="exitDash" layoutX="938.0" layoutY="644.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
       <Text fx:id="timeZone" layoutX="561.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Button fx:id="reports" layoutX="64.0" layoutY="644.0" mnemonicParsing="false" onAction="#onReports" text="Reports" />
    </children>
 </AnchorPane>

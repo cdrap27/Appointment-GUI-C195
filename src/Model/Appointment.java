@@ -8,10 +8,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.*;
-import java.util.TimeZone;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Appointment {
     private int ID;
@@ -541,6 +539,30 @@ public class Appointment {
             a.setEnd(zoneEnd.toLocalDateTime());
         });
         return appointments;
+    }
+
+    public static ObservableList<String> getTypes(ObservableList<Appointment> apps){
+            ObservableList<String> getTypes = FXCollections.observableArrayList();
+            Boolean duplicate = false;
+           for(int i = 0; i < apps.size(); i++){
+               duplicate = false;
+               for(int j = 0; j < getTypes.size(); j++){
+                   if(getTypes.get(j).equals(apps.get(i).getType()))
+                       duplicate = true;
+               }
+               if(duplicate == false)
+                   getTypes.add(apps.get(i).getType());
+           }
+            return getTypes;
+    }
+
+    public static ObservableList<Appointment> getTypeAppointments(String type){
+        ObservableList<Appointment> getTypeAppointments = FXCollections.observableArrayList();
+        DAO.DBAppointment.getAppointmentList().forEach(a ->{
+            if(a.getType().equals(type))
+                getTypeAppointments.add(a);
+        });
+        return getTypeAppointments;
     }
 
 

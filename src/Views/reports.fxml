@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.reportsController">
+   <children>
+      <TableView fx:id="customerReport" layoutX="65.0" layoutY="75.0" prefHeight="125.0" prefWidth="924.0">
+          <columns>
+              <TableColumn fx:id="appointmentsID" prefWidth="48.0" text="ID" />
+              <TableColumn fx:id="title" prefWidth="78.0" text="Title" />
+              <TableColumn fx:id="description" prefWidth="84.0" text="Description" />
+              <TableColumn fx:id="appointmentLocation" prefWidth="75.0" text="Location " />
+              <TableColumn fx:id="contact" prefWidth="73.0" text="Contact" />
+              <TableColumn fx:id="appointmentType" prefWidth="94.0" text="Type" />
+              <TableColumn fx:id="start" prefWidth="147.0" text="Start " />
+              <TableColumn fx:id="end" prefWidth="152.0" text="End" />
+              <TableColumn fx:id="customer" prefWidth="87.0" text="Customer" />
+              <TableColumn fx:id="user" prefWidth="87.0" text="User" />
+          </columns>
+      </TableView>
+      <TableView layoutX="65.0" layoutY="425.0" prefHeight="125.0" prefWidth="924.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <TableView layoutX="65.0" layoutY="248.0" prefHeight="125.0" prefWidth="924.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Text layoutX="65.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="65.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Appointments by:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="65.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report 3" />
+      <Text layoutX="65.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report 2" />
+      <RadioButton fx:id="type" layoutX="258.0" layoutY="50.0" mnemonicParsing="false" onAction="#onType" text="Type">
+         <toggleGroup>
+            <ToggleGroup fx:id="customerSelecter" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="month" layoutX="341.0" layoutY="50.0" mnemonicParsing="false" onAction="#onMonth" text="Month" toggleGroup="$customerSelecter" />
+      <RadioButton fx:id="all" layoutX="427.0" layoutY="50.0" mnemonicParsing="false" onAction="#onAll" selected="true" text="Show All" toggleGroup="$customerSelecter" />
+      <ChoiceBox fx:id="customerTableChoice"  layoutX="839.0" layoutY="46.0" prefWidth="150.0" onAction="#onCustomerTableChoice"/>
+   </children>
+</AnchorPane>

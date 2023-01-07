@@ -58,6 +58,7 @@ public class Dashboard {
     public static int appointmentIndex;
     public Button exitDash;
     public Text timeZone;
+    public Button reports;
 
 
     // public ObservableList<Appointment> weekAppointment;
@@ -250,6 +251,16 @@ public class Dashboard {
         }
     }
 
+    public void onReports(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/reports.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1056, 599);
+        stage.setTitle("Reports");
+        stage.setScene(scene);
+        stage.getScene().getWindow().centerOnScreen();
+        stage.show();
+    }
+
     /**
      * exits the program
      * @param actionEvent on exit
@@ -265,4 +276,6 @@ public class Dashboard {
             stage.close();
         }
     }
+
+
 }
