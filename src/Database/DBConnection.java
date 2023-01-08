@@ -4,28 +4,70 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * gets database connection
+ */
 public class DBConnection {
 
+    /**
+     * for database connection
+     */
     private static final String protocol = "jdbc";
+    /**
+     * for database connection
+     */
     private static final String vendor = ":mysql:";
+    /**
+     * for database connection
+     */
     private static final String location = "//localhost/";
+    /**
+     * for database connection
+     */
     private static final String databaseName = "client_schedule";
+    /**
+     * for database connection
+     */
     private static final String jdbcUrl = protocol + vendor + location + databaseName + "?connectionTimeZone = SERVER"; // LOCAL
+    /**
+     * for database connection
+     */
     private static final String driver = "com.mysql.cj.jdbc.Driver"; // Driver reference
+    /**
+     * for database connection
+     */
     private static final String userName = "sqlUser"; // Username
+    /**
+     * for database connection
+     */
     private static String password = "Passw0rd!"; // Password
 
 
 
+    /**
+     * for database connection
+     */
     private static final String ipAddress = "wgudb.ucertify.com:3306";
 
 
+    /**
+     * for database connection
+     */
     private static final String jdbcURL = protocol + vendor + ipAddress + databaseName;
 
+    /**
+     * for database connection
+     */
     private static final String MYSQLJDBCDriver = "com.mysql.jdbc.Driver";
 
+    /**
+     * for database connection
+     */
     private static Connection conn = null;
 
+    /**
+     * for database connection
+     */
     public static Connection startConnection(){
         try{
 
@@ -45,6 +87,10 @@ public class DBConnection {
         }
         return conn;
     }
+
+    /**
+     * for database connection
+     */
     public static void closeConnection(){
         try{
             conn.close();
@@ -53,6 +99,10 @@ public class DBConnection {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * for database connection
+     */
     public static Connection getConnection(){
 
         return conn;

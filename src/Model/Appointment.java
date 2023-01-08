@@ -12,30 +12,64 @@ import javafx.scene.control.TextField;
 import java.time.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * establishes appointment class
+ */
 public class Appointment {
+
+    /**
+     * reference for appointment class
+     */
     private int ID;
+    /**
+     * reference for appointment class
+     */
     private String title;
+    /**
+     * reference for appointment class
+     */
     private String description;
+    /**
+     * reference for appointment class
+     */
     private String location;
+    /**
+     * reference for appointment class
+     */
     private String type;
+    /**
+     * reference for appointment class
+     */
     private LocalDateTime start;
+    /**
+     * reference for appointment class
+     */
     private LocalDateTime end;
+    /**
+     * reference for appointment class
+     */
     private int customer;
+    /**
+     * reference for appointment class
+     */
     private int user;
+    /**
+     * reference for appointment class
+     */
     private int contact;
 
     /**
      * appointment class
-     * @param ID
-     * @param title
-     * @param description
-     * @param location
-     * @param type
-     * @param start
-     * @param end
-     * @param customer
-     * @param user
-     * @param contact
+     * @param ID id
+     * @param title title
+     * @param description description
+     * @param location location
+     * @param type type
+     * @param start start
+     * @param end end
+     * @param customer customer
+     * @param user user
+     * @param contact contact
      */
     public Appointment(int ID, String title, String description, String location, String type, LocalDateTime start,
                        LocalDateTime end,  int customer, int user, int contact){
@@ -53,93 +87,149 @@ public class Appointment {
 
     }
     /**
-     * setters
+     * setter
      */
     public void setID(int ID){
         this.ID = ID;
     }
 
+    /**
+     * setter
+     */
     public void setTitle(String title){
         this.title = title;
     }
 
+    /**
+     * setter
+     */
     public void setDescription(String description){
         this.description = description;
     }
 
+    /**
+     * setter
+     */
     public void setLocation(String location){
         this.location = location;
     }
 
+    /**
+     * setter
+     */
     public void setType(String type){
         this.type = type;
     }
 
+    /**
+     * setter
+     */
     public void setStart(LocalDateTime start){
         this.start = start;
     }
 
+    /**
+     * setter
+     */
     public void setEnd(LocalDateTime end){
         this.end = end;
     }
 
 
+    /**
+     * setter
+     */
     public void setCustomer(int customer){
         this.customer = customer;
     }
 
+    /**
+     * setter
+     */
     public void setUser(int user){
         this.user = user;
     }
 
+    /**
+     * setter
+     */
     public void setContact(int contact){
         this.contact = contact;
     }
 
     /**
-     * getters
+     * getter
      */
     public int getID(){
         return ID;
     }
 
+    /**
+     * getter
+     */
     public String getTitle(){
         return title;
     }
 
+    /**
+     * getter
+     */
     public String getDescription(){
         return description;
     }
 
+    /**
+     * getter
+     */
     public String getLocation(){
         return location;
     }
 
+    /**
+     * getter
+     */
     public String getType(){
         return type;
     }
 
+    /**
+     * getter
+     */
     public LocalDateTime getStart(){
         return start;
     }
 
+    /**
+     * getter
+     */
     public LocalDateTime getEnd(){
         return end;
     }
 
-
+    /**
+     * getter
+     */
     public int getCustomer(){
         return customer;
     }
 
+    /**
+     * getter
+     */
     public int getUser(){
         return user;
     }
 
+    /**
+     * getter
+     */
     public int getContact(){
         return contact;
     }
 
+    /**
+     * Observable list of times in 15 minute increments
+     */
     public static ObservableList<LocalTime> time(){
         ObservableList<LocalTime> time = FXCollections.observableArrayList();
         LocalTime start = LocalTime.of(0,15);
@@ -151,6 +241,11 @@ public class Appointment {
         return time;
     }
 
+    /**
+     * gets time
+     * @param time time
+     * @return time
+     */
     public static int getTime(LocalDateTime time){
         LocalTime t = time.toLocalTime();
         int getTime;
@@ -168,7 +263,7 @@ public class Appointment {
     }
 
     /**
-     * checks
+     * checks name
      */
     public static Boolean checkName(TextField addTitle){
         String temp = addTitle.getText();
@@ -183,6 +278,11 @@ public class Appointment {
         return checkName;
     }
 
+    /**
+     * checks description
+     * @param addDescription text field
+     * @return description
+     */
     public static Boolean checkDescription(TextField addDescription){
         String temp = addDescription.getText();
         Boolean checkName = true;
@@ -196,6 +296,11 @@ public class Appointment {
         return checkName;
     }
 
+    /**
+     * checks location
+     * @param addLocation location
+     * @return location
+     */
     public static Boolean checkLocation(TextField addLocation){
         String temp = addLocation.getText();
         Boolean checkName = true;
@@ -209,6 +314,11 @@ public class Appointment {
         return checkName;
     }
 
+    /**
+     * checks type
+     * @param addType type
+     * @return type
+     */
     public static Boolean checkType(TextField addType){
         String temp = addType.getText();
         Boolean checkName = true;
@@ -222,6 +332,11 @@ public class Appointment {
         return checkName;
     }
 
+    /**
+     * checks start date
+     * @param addStartDate start date
+     * @return start date
+     */
     public static Boolean checkStartDate(DatePicker addStartDate){
         Boolean checkName = true;
 
@@ -248,6 +363,12 @@ public class Appointment {
             return checkName;
         }
 
+    /**
+     * chekcs end date
+      * @param addEndDate end date
+     * @param addStartDate start date
+     * @return end date
+     */
     public static Boolean checkEndDate(DatePicker addEndDate, DatePicker addStartDate){
         Boolean checkName = true;
 
@@ -273,6 +394,12 @@ public class Appointment {
         return checkName;
     }
 
+    /**
+     * checks start time
+     * @param addStartTime start time
+     * @param addStartDate start date
+     * @return
+     */
     public static Boolean checkStartTime(ChoiceBox addStartTime, DatePicker addStartDate){
         Boolean check = true;
              LocalTime time = (LocalTime) addStartTime.getSelectionModel().getSelectedItem();
@@ -309,6 +436,14 @@ public class Appointment {
         return check;
     }
 
+    /**
+     * checks end time
+     * @param addEndTime end time
+     * @param addStartTime start time
+     * @param addEndDate end date
+     * @param addStartDate start date
+     * @return end time
+     */
     public static Boolean checkEndTime(ChoiceBox addEndTime, ChoiceBox addStartTime, DatePicker addEndDate, DatePicker addStartDate){
             Boolean check = true;
             LocalTime time = (LocalTime) addEndTime.getSelectionModel().getSelectedItem();
@@ -347,7 +482,11 @@ public class Appointment {
         }
 
 
-
+    /**
+     * checks customer
+     * @param customer customer
+     * @return customer
+     */
     public static Boolean checkCustomer(ChoiceBox customer){
         Boolean check = true;
         String cust = (String)customer.getSelectionModel().getSelectedItem();
@@ -363,6 +502,15 @@ public class Appointment {
         return check;
     }
 
+    /**
+     * checks appointment time
+     * @param addStartDate start date
+     * @param addEndDate end date
+     * @param addStartTime start time
+     * @param addEndTime end time
+     * @param addCustomer add customer
+     * @return appointment time
+     */
     public static Boolean checkAppointmentTime(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime,
                                                ChoiceBox addEndTime, ChoiceBox addCustomer){
         Boolean check = true;
@@ -385,6 +533,15 @@ public class Appointment {
 
     }
 
+    /**
+     * checks appointment overlap
+     * @param addStartDate start date
+     * @param addEndDate end date
+     * @param addStartTime start time
+     * @param addEndTime end time
+     * @param addCustomer add customer
+     * @return appointment overlap
+     */
     public static Boolean checkAppointmentOverlap(DatePicker addStartDate, DatePicker addEndDate, ChoiceBox addStartTime,
                                                ChoiceBox addEndTime, ChoiceBox addCustomer) {
         Boolean check = true;
@@ -477,6 +634,11 @@ public class Appointment {
 
     }
 
+    /**
+     * checks contact
+     * @param addContactID contact
+     * @return contact
+     */
     public static Boolean checkContact(ChoiceBox addContactID){
         Boolean check = true;
         String cust = (String)addContactID.getSelectionModel().getSelectedItem();
@@ -492,6 +654,11 @@ public class Appointment {
 
     }
 
+    /**
+     * checks user
+     * @param addUserID user id
+     * @return user
+     */
     public static Boolean checkUser(ChoiceBox addUserID){
         Boolean check = true;
         String cust = (String)addUserID.getSelectionModel().getSelectedItem();
@@ -542,6 +709,11 @@ public class Appointment {
         return appointments;
     }
 
+    /**
+     * gets types
+     * @param apps appointments
+     * @return types
+     */
     public static ObservableList<String> getTypes(ObservableList<Appointment> apps){
             ObservableList<String> getTypes = FXCollections.observableArrayList();
             Boolean duplicate = false;
@@ -557,6 +729,11 @@ public class Appointment {
             return getTypes;
     }
 
+    /**
+     * gets type appointments
+     * @param type string type
+     * @return type appointments
+     */
     public static ObservableList<Appointment> getTypeAppointments(String type){
         ObservableList<Appointment> getTypeAppointments = FXCollections.observableArrayList();
         DAO.DBAppointment.getAppointmentList().forEach(a ->{
@@ -566,6 +743,12 @@ public class Appointment {
         return getTypeAppointments;
     }
 
+    /**
+     * Lambda Expression #3: uses a lambda expression to cycle through all appointments and add appointments with a
+     * matching month to the getMonths list.
+     * @param month month
+     * @return list of appointments
+     */
     public static ObservableList<Appointment> getMonths(int month){
         ObservableList<Appointment> getMonths = FXCollections.observableArrayList();
         DBAppointment.getAppointmentList().forEach(a ->{
@@ -576,6 +759,12 @@ public class Appointment {
         return getMonths;
     }
 
+    /**
+     * Lambda expression #4: uses a lambda expression to cycle through all appointments and add appointments with a
+     * matching contact ID to the getContactSchedule list
+     * @param contactID contact id
+     * @return list of appointments
+     */
     public static ObservableList<Appointment> getContactSchedule(int contactID){
         ObservableList<Appointment> getContactSchedule = FXCollections.observableArrayList();
         DAO.DBAppointment.getAppointmentList().forEach(a ->{

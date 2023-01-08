@@ -6,9 +6,22 @@ import javafx.collections.ObservableList;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * creates contact class
+ */
 public class Contacts {
+
+    /**
+     * reference for contacts class
+     */
     private int contactID;
+    /**
+     * reference for contacts class
+     */
     private String contactName;
+    /**
+     * reference for contacts class
+     */
     private String contactEmail;
 
     /**
@@ -24,33 +37,46 @@ public class Contacts {
     }
 
     /**
-     * setters
+     * setter
      */
     public void setContactID(int contactID){
         this.contactID = contactID;    }
 
+    /**
+     * setter
+     */
     public void setContactName(String contactName){
         this.contactName = contactName;    }
 
+    /**
+     * setter
+     */
     public void setContactEmail(String contactEmail){
         this.contactEmail = contactEmail;
     }
 
     /**
-     * getters
+     * getter
      */
     public int getContactID(){
         return contactID;    }
 
+    /**
+     * getter
+     */
     public String getContactName(){
         return contactName;    }
 
+    /**
+     * getter
+     */
     public String getContactEmail(){
         return contactEmail;
     }
 
     /**
-     * gets contact names using a lambda expression
+     * Lambda Expression #5: cycles through the contact list to retrieve the contact names and add them to the
+     * contactNames list
      * @param contacts contact list
      * @return contact names
      */

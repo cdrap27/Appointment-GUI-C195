@@ -17,16 +17,54 @@ import java.time.LocalDateTime;
  */
 public class Customers {
 
+    /**
+     * reference for the customers class
+     */
     private int customerID;
+    /**
+     * reference for the customers class
+     */
     private String name;
+    /**
+     * reference for the customers class
+     */
     private String address;
+    /**
+     * reference for the customers class
+     */
     private String postalCode;
+    /**
+     * reference for the customers class
+     */
     private String phone;
+    /**
+     * reference for the customers class
+     */
     private int division;
+    /**
+     * reference for the customers class
+     */
     private String divisionName;
+    /**
+     * reference for the customers class
+     */
     private String country;
+    /**
+     * customer country name
+     */
     public static String customerCountryName;
 
+    /**
+     * creates the customer class
+     * @param customerID customer id
+     * @param name name
+     * @param address address
+     * @param postalCode postal code
+     * @param phone phone
+     * @param division division
+     * @param divisionName division name
+     * @param country country
+     */
     public Customers(int customerID, String name, String address, String postalCode, String phone, int division, String divisionName, String country){
         this.customerID = customerID;
         this.name = name;
@@ -39,36 +77,62 @@ public class Customers {
     }
 
     /**
-     * getters
+     * getter
      */
     public int getCustomerID(){
        return customerID;
     }
 
+    /**
+     * getter
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * getters
+     */
     public String getAddress(){
        return address;
     }
 
+    /**
+     * getters
+     */
     public String getPostalCode(){
         return postalCode;
     }
 
+    /**
+     * getters
+     */
     public String getPhone(){
        return phone;
     }
 
+    /**
+     * getters
+     */
     public int getDivision(){
         return division;
     }
 
+    /**
+     * getters
+     */
     public String getDivisionName(){ return divisionName; }
 
+    /**
+     * getters
+     */
     public String getCountry(){ return country; }
 
+    /**
+     * Lambda Expression 7: cycles through the list of customers and adds the name to a list of customer names.
+     * @param customers customers
+     * @return customer names
+     */
     public static ObservableList<String> customerNames(ObservableList<Customers> customers){
         ObservableList<String> customerNames = FXCollections.observableArrayList();
         //lambda expression to cycle through the customer list and return customer names
@@ -81,34 +145,55 @@ public class Customers {
     }
 
     /**
-     * setters
+     * setter
      */
     public void setCustomerID(int customerID){
         this.customerID = customerID;
     }
 
+    /**
+     * setter
+     */
     public void setName(String name){
         this.name = name;
     }
 
+    /**
+     * setter
+     */
     public void setAddress(String address){
         this.address = address;
     }
 
+    /**
+     * setter
+     */
     public void setPostalCode(String postalCode){
         this.postalCode = postalCode;
     }
 
+    /**
+     * setter
+     */
     public void setPhone(String phone){
         this.phone = phone;
     }
 
+    /**
+     * setter
+     */
     public void setDivision(int division){
         this.division = division;
     }
 
+    /**
+     * setter
+     */
     public void setDivisionName(String divisionName) { this.divisionName = divisionName; }
 
+    /**
+     * setter
+     */
     public void setCountry(String countr) { this.country = country; }
 
     /**
@@ -163,7 +248,11 @@ public class Customers {
         return null;
     }
 
-    //checks
+    /**
+     * checks name
+      * @param nameField name
+     * @return name
+     */
     public static Boolean checkName(TextField nameField){
         String name = nameField.getText();
         Boolean check = true;
@@ -177,6 +266,11 @@ public class Customers {
         return check;
     }
 
+    /**
+     * checks address
+     * @param nameField address
+     * @return address
+     */
     public static Boolean checkAddress(TextField nameField){
         String name = nameField.getText();
         Boolean check = true;
@@ -190,6 +284,11 @@ public class Customers {
         return check;
     }
 
+    /**
+     * checks postal code
+     * @param nameField postal code
+     * @return postal code
+     */
     public static Boolean checkPost(TextField nameField){
         String name = nameField.getText();
         Boolean check = true;
@@ -203,6 +302,11 @@ public class Customers {
         return check;
     }
 
+    /**
+     * checks phone
+     * @param nameField phone
+     * @return phone
+     */
     public static Boolean checkPhone(TextField nameField){
         String name = nameField.getText();
         Boolean check = true;
@@ -216,6 +320,11 @@ public class Customers {
         return check;
     }
 
+    /**
+     * chekcs country
+     * @param country country
+     * @return country
+     */
     public static Boolean checkCountry(ChoiceBox country){
 
         Boolean check = true;
@@ -229,6 +338,11 @@ public class Customers {
         return check;
     }
 
+    /**
+     * checks division
+     * @param country division
+     * @return division
+     */
     public static Boolean checkDivision(ChoiceBox country){
 
         Boolean check = true;
@@ -242,10 +356,16 @@ public class Customers {
         return check;
     }
 
+    /**
+     * Lambda Expression 8: Cycels through the list of customers to find matching countries and adds them to the
+     * customersByCountry list
+     * @param country country
+     * @return customers by country
+     */
     public static ObservableList<Customers> customersByCountry(String country){
         ObservableList<Customers> customersByCountry = FXCollections.observableArrayList();
         DAO.DBCustomers.getCustomerList().forEach(c ->{
-            System.out.println("" + c.getCountry() + " input is " + country);
+            //System.out.println("" + c.getCountry() + " input is " + country);
             if(c.getCountry().equals(country)){
                 customersByCountry.add(c);
             }

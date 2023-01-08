@@ -6,12 +6,29 @@ import javafx.collections.ObservableList;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * creates users class
+ */
 public class Users {
+    /**
+     * reference for the users class
+     */
     private int userID;
+    /**
+     * reference for the users class
+     */
     private String userName;
+    /**
+     * reference for the users class
+     */
     private String userPassword;
 
-
+    /**
+     * creates the user
+     * @param userID user id
+     * @param userName user name
+     * @param userPassword user password
+     */
     public Users(int userID, String userName, String userPassword){
         this.userID = userID;
         this.userName = userName;
@@ -19,39 +36,51 @@ public class Users {
     }
 
     /**
-     * setters
+     * setter
      */
     public void setUserID(int userID){
         this.userID = userID;    }
 
+    /**
+     * setter
+     */
     public void setUserName(String userName){
         this.userName = userName;    }
 
+    /**
+     * setter
+     */
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 
     /**
-     * getters
+     * getter
      */
     public int getUserID(){
         return userID;    }
 
+    /**
+     * getter
+     */
     public String getUserName(){
         return userName;    }
 
+    /**
+     * getter
+     */
     public String getUserPassword(){
         return userPassword;
     }
 
     /**
-     * gets user names using a lambda expression from the user list
+     * Lambda Expression 10: cycles through the users list and adds the usernames to the usernames list
      * @param users user list
      * @return user names
      */
     public static ObservableList<String> userNames(ObservableList<Users> users){
         ObservableList<String> userNames = FXCollections.observableArrayList();
-        //lambda expression 2, cycles through the contact list to retrieve contact names.
+        //lambda expression cycles through the contact list to retrieve contact names.
         users.forEach(c ->{
             String nameUser = c.getUserName();
             userNames.add(nameUser);

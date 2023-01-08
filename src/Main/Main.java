@@ -12,9 +12,21 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 
+/**
+ * main
+ */
 public class Main extends Application{
+
+    /**
+     * establishes locale
+     */
     public static String locale;
 
+    /**
+     * starts application and sets lists
+     * @param primaryStage primary stage
+     * @throws Exception exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         DAO.DBCountries.setCountryList();
@@ -35,7 +47,10 @@ public class Main extends Application{
     }
 
 
-
+    /**
+     * main
+     * @param args database connection
+     */
     public static void main(String[] args) {
         DBConnection.startConnection();
         launch(args);
