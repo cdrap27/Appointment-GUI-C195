@@ -15,12 +15,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 
 public class loginController {
@@ -39,11 +43,12 @@ public class loginController {
     public Text locationTextResult;
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
     @FXML
-    private void initialize(){
+    private void initialize() throws IOException {
         locationTextResult.setText(Locale.getDefault().getCountry());
            if(Locale.getDefault().getLanguage() == "en" ){
             System.out.println("working");
             language.setText("English");
+            createFile();
 
         }
         else if(Locale.getDefault().getLanguage() == "fr") {
@@ -59,12 +64,29 @@ public class loginController {
            }
     }
 
+    public void createFile() throws IOException {
+        try {
+            FileWriter fw = new FileWriter("login_activity.txt", true);
+            fw.write("Program opened:\n" + String.valueOf(LocalDateTime.now()) + " Time Zone: " + System.getProperty("user.timezone")+"\n\n");
+            fw.flush();
+
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void onLogin(ActionEvent actionEvent) throws IOException {
         String user = username.getText();
         String pass = password.getText();
 
         if(userAccess.userFound(user, pass) == true){
+            FileWriter fw = new FileWriter("login_activity.txt", true);
+            fw.write("Successful login on " + String.valueOf(LocalDateTime.now()) +" Time Zone: "  + System.getProperty("user.timezone")
+                    + "\nUsername: " + user + "\nPassword: " + pass + "\n\n");
+            fw.flush();
+            fw.close();
             //loads the dashboard
             Parent root = FXMLLoader.load(getClass().getResource("../Views/dashboard.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -101,6 +123,15 @@ public class loginController {
         }
         else
         {
+            try{
+            FileWriter fw = new FileWriter("login_activity.txt", true);
+            fw.write("Unsuccessful login on " + String.valueOf(LocalDateTime.now()) +" Time Zone: "  + System.getProperty("user.timezone")
+                    + "\nUsername: "+  user + "\nPassword: " + pass + "\n\n");
+            fw.flush();
+            fw.close();}
+            catch(IOException e){
+                e.printStackTrace();
+            }
             Alert alert = new Alert(Alert.AlertType.ERROR);
             if(Locale.getDefault().getLanguage() == "en")
             alert.setTitle("User not found");

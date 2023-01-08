@@ -1,0 +1,39 @@
+2023-01-08T13:30:45.783697900 Time Zone: Atlantic/Cape_Verde
+Unsuccessful login attempt
+Username: 
+Password: 
+Successful login
+Username: test
+Password: test
+Program opened:
+2023-01-08T13:34:24.184762800 Time Zone: Atlantic/Cape_Verde
+Unsuccessful login on 2023-01-08T13:34:26.084030700 Time Zone: Atlantic/Cape_Verde
+Username: 
+Password: 
+Unsuccessful login on 2023-01-08T13:34:28.080043300 Time Zone: Atlantic/Cape_Verde
+Username: 
+Password: 
+Unsuccessful login on 2023-01-08T13:34:32.111162800 Time Zone: Atlantic/Cape_Verde
+Username: t
+Password: t
+Unsuccessful login on 2023-01-08T13:34:36.775980600 Time Zone: Atlantic/Cape_Verde
+Username: test
+Password: ttest
+Successful login on 2023-01-08T13:34:39.804794400 Time Zone: Atlantic/Cape_Verde
+Username: test
+Password: test
+Program opened:
+2023-01-08T13:36:44.106480100 Time Zone: Atlantic/Cape_Verde
+
+Unsuccessful login on 2023-01-08T13:36:45.703381100 Time Zone: Atlantic/Cape_Verde
+Username: 
+Password: 
+
+Unsuccessful login on 2023-01-08T13:36:47.293511200 Time Zone: Atlantic/Cape_Verde
+Username: 
+Password: 
+
+Successful login on 2023-01-08T13:36:51.387609300 Time Zone: Atlantic/Cape_Verde
+Username: test
+Password: test
+
