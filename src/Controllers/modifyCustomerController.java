@@ -18,16 +18,49 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class modifyCustomerController {
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerID;
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerName;
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerAddress;
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerPost;
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerPhone;
+    /**
+     * reference for the gui
+     */
     public Button save;
+    /**
+     * reference for the gui
+     */
     public Button cancel;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addCustomerCountry;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addCustomerDivision;
+    /**
+     * reference for the gui
+     */
     public TextField addCustomerDivisionID;
+    /**
+     * reference for the gui
+     */
     public Boolean startup;
 
     /**

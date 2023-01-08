@@ -19,26 +19,76 @@ import java.time.ZoneId;
 import java.util.Optional;
 import java.util.TimeZone;
 
+/**
+ * controller for add appointment screen
+ */
 public class addAppointmentController {
-
+    /**
+     * for use on the gui
+     */
     public DatePicker addStartDate;
+    /**
+     * for use on the gui
+     */
     public DatePicker addEndDate;
+    /**
+     * for use on the gui
+     */
     public ChoiceBox addStartTime;
+    /**
+     * for use on the gui
+     */
     public ChoiceBox addEndTime;
+    /**
+     * for use on the gui
+     */
     public ChoiceBox addContactID;
+    /**
+     * for use on the gui
+     */
     public ChoiceBox addCustomerID;
+    /**
+     * for use on the gui
+     */
     public ChoiceBox addUserID;
+    /**
+     * for use on the gui
+     */
     public TextField addAppointmentID;
+    /**
+     * for use on the gui
+     */
     public TextField addTitle;
+    /**
+     * for use on the gui
+     */
     public TextField addDescription;
+    /**
+     * for use on the gui
+     */
     public TextField addLocation;
+    /**
+     * for use on the gui
+     */
     public TextField addType;
+    /**
+     * appointment for reference
+     */
     public Appointment addAnAppointment;
+    /**
+     * for use on the gui
+     */
     public Text estStart;
+    /**
+     * for use on the gui
+     */
     public Text estEnd;
 
 
-
+    /**
+     * initializes the add appointment screen
+     *
+     */
     public void initialize(){
         Dashboard.modifyApp = new Appointment(DBAppointment.appointmentSize+1, "blank", "blank", "blank", "blank",
                 LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
@@ -54,6 +104,11 @@ public class addAppointmentController {
 
     }
 
+    /**
+     * when saving, checks data and adds it to the appointment list and database if it passes the checks
+     * @param actionEvent save button
+     * @throws IOException ioexception
+     */
     public void onSave(ActionEvent actionEvent) throws IOException {
         Boolean check = checkData();
         if(check == true){
@@ -74,6 +129,11 @@ public class addAppointmentController {
 
     }
 
+    /**
+     * returns to the dashboard
+     * @param actionEvent   cancel button
+     * @throws IOException  io exception
+     */
     public void onCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cancel?");
@@ -91,6 +151,10 @@ public class addAppointmentController {
         }
     }
 
+    /**
+     * checks data and returns true if it passes
+     * @return checks data
+     */
     public Boolean checkData(){
         Boolean check = true;
         Boolean continued = true;
@@ -165,6 +229,10 @@ public class addAppointmentController {
         return continued;
     }
 
+    /**
+     * creates and appointment with the entered data
+     * @return appointment
+     */
     public Appointment addAppointmentForm(){
         Appointment appointment = new Appointment(DBAppointment.appointmentSize+1, addTitle.getText(), addDescription.getText(), addLocation.getText(),
                 addType.getText(), LocalDateTime.of(addStartDate.getValue(), (LocalTime)addStartTime.getValue()),
@@ -173,6 +241,10 @@ public class addAppointmentController {
         return appointment;
     }
 
+    /**
+     * when a start date is selected, sets the end date to be the same
+     * @param actionEvent start date selected
+     */
     public void startDateSelect(ActionEvent actionEvent) {
         addEndDate.setValue(addStartDate.getValue());
     }

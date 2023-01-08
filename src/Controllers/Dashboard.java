@@ -24,45 +24,133 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * controls the dashboard screen
+ */
 public class Dashboard {
     //customer table
+
+    /**
+     * reference for the gui
+     */
     public TableView customersTable;
 
+    /**
+     * reference for the gui
+     */
     public TableColumn customerID;
+    /**
+     * reference for the gui
+     */
     public TableColumn name;
+    /**
+     * reference for the gui
+     */
     public TableColumn address;
+    /**
+     * reference for the gui
+     */
     public TableColumn post;
+    /**
+     * reference for the gui
+     */
     public TableColumn phone;
+    /**
+     * reference for the gui
+     */
     public TableColumn division;
+    /**
+     * reference for the gui
+     */
     public TableColumn country;
+    /**
+     * reference for the gui
+     */
     public TableColumn divisionName;
 
+    /**
+     * reference for the modify customer screen
+     */
     public static Customers modifyCust;
+    /**
+     * reference for the modify customer screen
+     */
     public static int customerIndex;
 
     //appointment table
+
+    /**
+     * reference for the gui
+     */
     public TableView appointmentsTable;
 
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentsID;
+    /**
+     * reference for the gui
+     */
     public TableColumn title;
+    /**
+     * reference for the gui
+     */
     public TableColumn description;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentLocation;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentType;
+    /**
+     * reference for the gui
+     */
     public TableColumn start;
+    /**
+     * reference for the gui
+     */
     public TableColumn end;
+    /**
+     * reference for the gui
+     */
     public TableColumn customer;
+    /**
+     * reference for the gui
+     */
     public TableColumn user;
+    /**
+     * reference for the gui
+     */
     public TableColumn contact;
 
+    /**
+     * reference for the modify appointment screen
+     */
     public static Appointment modifyApp;
+    /**
+     * reference for the modify appointment screen
+     */
     public static int appointmentIndex;
+    /**
+     * reference for the gui
+     */
     public Button exitDash;
+    /**
+     * reference for the gui
+     */
     public Text timeZone;
+    /**
+     * reference for the gui
+     */
     public Button reports;
 
 
-    // public ObservableList<Appointment> weekAppointment;
 
+    /**
+     * initializes the dashboard
+     */
     @FXML
     private void initialize(){
         //sets timezone
@@ -120,6 +208,11 @@ public class Dashboard {
         appointmentsTable.setItems(DAO.DBAppointment.getAppointmentList());
     }
 
+    /**
+     * opens the add customer screen
+     * @param actionEvent add customer
+     * @throws IOException ioexception
+     */
     public void onAddCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/addCustomer.fxml"));
         Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -130,6 +223,11 @@ public class Dashboard {
         stage.show();
     }
 
+    /**
+     * opens the modify customer screen
+     * @param actionEvent modify customer
+     * @throws IOException ioexception
+     */
     public void onModifyCustomer(ActionEvent actionEvent) throws IOException {
         if(!customersTable.getSelectionModel().isEmpty()){
             modifyCust = (Customers)customersTable.getSelectionModel().getSelectedItem();
@@ -199,6 +297,11 @@ public class Dashboard {
         stage.show();
     }
 
+    /**
+     * opens the modify appointment screen
+     * @param actionEvent modify appointment
+     * @throws IOException ioexception
+     */
     public void onModifyAppointment(ActionEvent actionEvent) throws IOException {
         if(!appointmentsTable.getSelectionModel().isEmpty()) {
             modifyApp = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
@@ -251,6 +354,11 @@ public class Dashboard {
         }
     }
 
+    /**
+     * opens the reports page
+     * @param actionEvent   reports
+     * @throws IOException  ioexception
+     */
     public void onReports(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/reports.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

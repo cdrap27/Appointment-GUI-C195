@@ -23,55 +23,184 @@ import java.util.Optional;
 
 public class reportsController {
     //reports table 1
+
+    /**
+     * reference for the gui
+     */
     public ToggleGroup customerSelecter;
+    /**
+     * reference for the gui
+     */
     public RadioButton type;
+    /**
+     * reference for the gui
+     */
     public RadioButton month;
+    /**
+     * reference for the gui
+     */
     public RadioButton all;
 
+    /**
+     * reference for the gui
+     */
     public TableView customerReport;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentsID;
+    /**
+     * reference for the gui
+     */
     public TableColumn title;
+    /**
+     * reference for the gui
+     */
     public TableColumn description;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentLocation;
+    /**
+     * reference for the gui
+     */
     public TableColumn contact;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentType;
+    /**
+     * reference for the gui
+     */
     public TableColumn start;
+    /**
+     * reference for the gui
+     */
     public TableColumn end;
+    /**
+     * reference for the gui
+     */
     public TableColumn customer;
+    /**
+     * reference for the gui
+     */
     public TableColumn user;
 
+    /**
+     * reference for the gui
+     */
     public ChoiceBox customerTableChoice;
 
+    /**
+     * reference for the gui
+     */
     public Text numberOfAppointments;
 
     //table 2
+
+    /**
+     * reference for the gui
+     */
     public TableView contactSchedule;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentsID2;
+    /**
+     * reference for the gui
+     */
     public TableColumn title2;
+    /**
+     * reference for the gui
+     */
     public TableColumn description2;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentLocation2;
+    /**
+     * reference for the gui
+     */
     public TableColumn appointmentType2;
+    /**
+     * reference for the gui
+     */
     public TableColumn start2;
+    /**
+     * reference for the gui
+     */
     public TableColumn end2;
+    /**
+     * reference for the gui
+     */
     public TableColumn customer2;
+    /**
+     * reference for the gui
+     */
     public TableColumn user2;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox contactSelect;
+    /**
+     * reference for the gui
+     */
     public Text contactsAppointments;
 
     //customer select table
+
+    /**
+     * reference for the gui
+     */
     public Text numberOfCustomers;
+    /**
+     * reference for the gui
+     */
     public TableView customerByCountry;
+    /**
+     * reference for the gui
+     */
     public TableColumn customerID;
+    /**
+     * reference for the gui
+     */
     public TableColumn name;
+    /**
+     * reference for the gui
+     */
     public TableColumn address;
+    /**
+     * reference for the gui
+     */
     public TableColumn post;
+    /**
+     * reference for the gui
+     */
     public TableColumn phone;
+    /**
+     * reference for the gui
+     */
     public TableColumn division;
+    /**
+     * reference for the gui
+     */
     public TableColumn country;
+    /**
+     * reference for the gui
+     */
     public TableColumn divisionName;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox customerSelect;
 
+    /**
+     * reference for the gui
+     */
     public Button exit;
+    /**
+     * reference for the gui
+     */
     public Button dashboard;
 
     /**

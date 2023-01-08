@@ -19,26 +19,76 @@ import java.time.ZoneId;
 import java.util.Optional;
 import java.util.TimeZone;
 
+/**
+ * controls the modify appointment screen
+ */
 public class modifyAppointmentController {
 
+    /**
+     * reference for the gui
+     */
     public DatePicker addStartDate;
+    /**
+     * reference for the gui
+     */
     public DatePicker addEndDate;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addStartTime;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addEndTime;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addContactID;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addCustomerID;
+    /**
+     * reference for the gui
+     */
     public ChoiceBox addUserID;
+    /**
+     * reference for the gui
+     */
     public TextField addAppointmentID;
+    /**
+     * reference for the gui
+     */
     public TextField addTitle;
+    /**
+     * reference for the gui
+     */
     public TextField addDescription;
+    /**
+     * reference for the gui
+     */
     public TextField addLocation;
+    /**
+     * reference for the gui
+     */
     public TextField addType;
+    /**
+     * temporary appointment for modifying appointment
+     */
     public Appointment addAnAppointment;
+    /**
+     * reference for the gui
+     */
     public Text estStart;
+    /**
+     * reference for the gui
+     */
     public Text estEnd;
 
 
-
+    /**
+     * initializes the modify appointment page
+     */
     public void initialize(){
 
         addStartTime.setItems(Model.Appointment.time());
@@ -66,6 +116,11 @@ public class modifyAppointmentController {
 
     }
 
+    /**
+     * checks the appointment data and saves it if it passes the check/deletes the old appointment
+     * @param actionEvent save
+     * @throws IOException ioexception
+     */
     public void onSave(ActionEvent actionEvent) throws IOException {
         Boolean check = checkData();
         if(check == true){
@@ -89,6 +144,11 @@ public class modifyAppointmentController {
 
     }
 
+    /**
+     * returns to the dashboard
+     * @param actionEvent cancel
+     * @throws IOException cancel
+     */
     public void onCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cancel?");
@@ -106,6 +166,10 @@ public class modifyAppointmentController {
         }
     }
 
+    /**
+     * checks data, returns true if passes checks
+     * @return check data
+     */
     public Boolean checkData(){
         Boolean check = true;
         Boolean continued = true;
@@ -180,6 +244,10 @@ public class modifyAppointmentController {
         return continued;
     }
 
+    /**
+     * creates an appointment from data entered
+     * @return appointment
+     */
     public Appointment addAppointmentForm(){
         Appointment appointment = new Appointment(Dashboard.modifyApp.getID(), addTitle.getText(), addDescription.getText(), addLocation.getText(),
                 addType.getText(), LocalDateTime.of(addStartDate.getValue(), (LocalTime)addStartTime.getValue()),
@@ -188,6 +256,10 @@ public class modifyAppointmentController {
         return appointment;
     }
 
+    /**
+     * when start date is selected, changes end date to match
+     * @param actionEvent action event
+     */
     public void startDateSelect(ActionEvent actionEvent) {
         addEndDate.setValue(addStartDate.getValue());
     }

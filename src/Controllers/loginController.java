@@ -26,22 +26,62 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
-
+/**
+ * controlls the login page
+ */
 public class loginController {
 
     @FXML
 
+    /**
+     * reference for the gui
+     */
     public TextField username;
+    /**
+     * reference for the gui
+     */
     public TextField password;
+    /**
+     * reference for the gui
+     */
     public Text language;
+    /**
+     * reference for the gui
+     */
     public Button exit;
+    /**
+     * reference for the gui
+     */
     public Button login;
+    /**
+     * reference for the gui
+     */
     public Text usernameLabel;
+    /**
+     * reference for the gui
+     */
     public Text passwordLabel;
+    /**
+     * reference for the gui
+     */
     public Text languageLabel;
+    /**
+     * reference for the gui
+     */
     public Text locationText;
+    /**
+     * reference for the gui
+     */
     public Text locationTextResult;
+    /**
+     * stores languages
+     */
     ObservableList<String> languages  = FXCollections.observableArrayList("English", "French");
+
+    /**
+     * initializes the login page
+     * @throws IOException   ioexception
+     */
     @FXML
     private void initialize() throws IOException {
         locationTextResult.setText(Locale.getDefault().getCountry());
@@ -64,6 +104,10 @@ public class loginController {
            }
     }
 
+    /**
+     * creates a text file if not created and gets time/timezone
+     * @throws IOException ioexception
+     */
     public void createFile() throws IOException {
         try {
             FileWriter fw = new FileWriter("login_activity.txt", true);
@@ -76,7 +120,11 @@ public class loginController {
         }
     }
 
-
+    /**
+     * loads dashboard if login successful, tracks login attempts, displays error message if unsuccessful.
+     * @param actionEvent login
+     * @throws IOException ioexception
+     */
     public void onLogin(ActionEvent actionEvent) throws IOException {
         String user = username.getText();
         String pass = password.getText();
@@ -147,6 +195,10 @@ public class loginController {
 
     }
 
+    /**
+     * exits the program
+     * @param actionEvent   exit
+     */
     public void onExit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         if(Locale.getDefault().getLanguage() == "en")
