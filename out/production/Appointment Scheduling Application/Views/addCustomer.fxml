@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.addCustomerController">
+    <children>
+        <Text layoutX="111.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID" />
+        <Text layoutX="111.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
+        <Text layoutX="111.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+        <Text layoutX="110.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Postal Code" />
+        <Text layoutX="111.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" />
+        <Text layoutX="112.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" />
+        <Text layoutX="112.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Division" />
+        <Text layoutX="111.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Division ID" />
+        <TextField fx:id="addCustomerID" disable="true" layoutX="243.0" layoutY="98.0" prefHeight="25.0" prefWidth="174.0" />
+        <TextField fx:id="addCustomerName" layoutX="243.0" layoutY="134.0" prefHeight="25.0" prefWidth="174.0" />
+        <TextField fx:id="addCustomerAddress" layoutX="243.0" layoutY="168.0" prefHeight="25.0" prefWidth="174.0" />
+        <TextField fx:id="addCustomerPost" layoutX="243.0" layoutY="204.0" prefHeight="25.0" prefWidth="174.0" />
+        <TextField fx:id="addCustomerPhone" layoutX="243.0" layoutY="241.0" prefHeight="25.0" prefWidth="174.0" />
+        <Button fx:id="save" layoutX="375.0" layoutY="426.0" mnemonicParsing="false" onAction="#onSave" text="Save" />
+        <Button fx:id="cancel" layoutX="288.0" layoutY="426.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+        <Text layoutX="197.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Customer">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Text>
+        <ChoiceBox fx:id="addCustomerCountry" layoutX="244.0" layoutY="280.0" onAction="#countrySelected" prefHeight="25.0" prefWidth="174.0" />
+        <ChoiceBox fx:id="addCustomerDivision" layoutX="244.0" layoutY="321.0" onAction="#divisionSelected" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="addCustomerDivisionID" disable="true" layoutX="243.0" layoutY="366.0" prefHeight="25.0" prefWidth="174.0" />
+    </children>
+
+
+</AnchorPane>

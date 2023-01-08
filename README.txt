@@ -26,7 +26,7 @@ Directions:
 Login using 'test' as username and password. Test data is automatically added and lists for all database information are created.
 Delete the test appointments and restart the application, this will add test data as 15 minutes from the current time, triggering appointment alerts.
 Appointment alerts are displayed in separate alerts for each appointment. 
-Two table views on the dashboard, one for customers, one for appointments.  Both have buttons to add, modify, and delete entries.
+Two table views on the dashboard, one for customers, one for appointments.  Both have buttons to add, modify, and delete entries.  Appointments has a radio button that can be used to get appointments by month(30 day period) and week(7 day period).
 Reports button shows 3 tableviews showing 3 different reports.
 Language is automatically translated for the login page only.
 Text file is created or edited to track login attempts. 
