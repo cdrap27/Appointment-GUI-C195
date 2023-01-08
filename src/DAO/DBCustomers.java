@@ -14,10 +14,17 @@ import java.time.LocalDateTime;
  * access to the database to get customers.
  */
 public class DBCustomers {
-    //checks if a customer already exists
+
+    /**
+     * checks if a customer already exists
+     */
     private static Boolean duplicateCustomer;
-    //keeps track of the size of the customer list
+
+    /**
+     * keeps track of the size of the customer list
+     */
     public static int customerSize;
+
     /**
      * creates a customer list
      */

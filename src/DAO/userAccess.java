@@ -6,7 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * gets user access
+ */
 public class userAccess {
+    /**
+     * attempts to find matching username and password
+     * @param userName username
+     * @param password password
+     * @return userfound
+     */
     public static Boolean userFound(String userName, String password){
         try{
             String sql = "SELECT * FROM users WHERE user_name = '" + userName + "' AND password = '" +

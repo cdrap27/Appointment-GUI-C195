@@ -13,8 +13,13 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * communicates with the database to get countries
+ */
 public class DBCountries {
-    //a list of countries
+    /**
+     * a list of countries
+     */
     private static ObservableList<Countries> countryList = FXCollections.observableArrayList();
 
 
@@ -45,6 +50,10 @@ public class DBCountries {
 
     }
 
+    /**
+     * gets the list of countries
+     * @return country list
+     */
     public static ObservableList<Countries> getCountryList(){
         return countryList;
     }

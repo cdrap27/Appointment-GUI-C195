@@ -44,6 +44,10 @@ public class DBUsers {
 
     }
 
+    /**
+     * gets list of users
+     * @return user list
+     */
     public static ObservableList<Users> getUserList() {
         return userList;
     }

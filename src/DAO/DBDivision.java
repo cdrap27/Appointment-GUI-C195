@@ -14,10 +14,15 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * communicates with the database to get division data
+ */
 public class DBDivision {
-    //a list of divsions
-    private static ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
+    /**
+     * creates a list of divisions
+     */
+    private static ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
     /**
      * adds in test data then sets all appointments into an observable list
@@ -47,6 +52,10 @@ public class DBDivision {
 
     }
 
+    /**
+     * gets the list of divisions
+     * @return division list
+     */
     public static ObservableList<Division> getDivisionList(){
         return divisionList;
     }

@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * communicates with the database to get appointment information
+ */
 public class DBAppointment {
     //checks if the appointment already exists.
     public static Boolean duplicateAppointment = false;
@@ -60,18 +63,21 @@ public class DBAppointment {
         }
         appointmentSize = appointmentList.size();
     }
+
     /**
      * add an appointment to the observable list
      */
     public void addAppointment(Appointment a){
         appointmentList.add(a);
     }
+
     /**
      * returns the observable list of appointments
      */
     public static ObservableList<Appointment> getAppointmentList() {
         return appointmentList;
     }
+
     /**
      * creates a list of appointments for this week
      * @return current weeks appointments
@@ -110,6 +116,10 @@ public class DBAppointment {
         return thisMonth;
     }
 
+    /**
+     * finds appointments occuring within the next 15 minutes and stores them in an observable list
+     * @return upcoming appointments
+     */
     public static ObservableList<Appointment> upcomingAppointments(){
         ObservableList<Appointment> upcoming = FXCollections.observableArrayList();
         LocalDateTime before = LocalDateTime.now().minusMinutes(15);
@@ -229,6 +239,9 @@ public class DBAppointment {
             }
     }
 
+    /**
+     * adds in test data
+     */
     private static void addTestData(){
         //test data for this week
         Appointment a = new Appointment(3, "week", "gotta test", "Mall", "regualr",

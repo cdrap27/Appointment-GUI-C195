@@ -11,8 +11,13 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * communicates with the database for contact information
+ */
 public class DBContact {
-    //a list of contacts
+    /**
+     * list of contacts
+     */
     private static ObservableList<Contacts> contactList = FXCollections.observableArrayList();
 
 
@@ -44,6 +49,10 @@ public class DBContact {
 
     }
 
+    /**
+     * returns the contact list
+     * @return contact list
+     */
     public static ObservableList<Contacts> getContactList(){
         return contactList;
     }
