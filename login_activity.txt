@@ -1,0 +1,16 @@
+Program opened:
+2023-04-24T07:26:47.658473 Time Zone: America/Denver
+
+Successful login on 2023-04-24T07:26:57.385979800 Time Zone: America/Denver
+Username: test
+Password: test
+
+Program opened:
+2023-04-29T05:44:07.415668300 Time Zone: America/Denver
+
+Program opened:
+2023-04-29T05:44:53.409538800 Time Zone: America/Denver
+
+Program opened:
+2023-04-29T05:45:06.903721700 Time Zone: America/Denver
+

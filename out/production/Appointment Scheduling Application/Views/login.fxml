@@ -18,18 +18,16 @@
    <children>
       <AnchorPane prefHeight="247.0" prefWidth="518.0">
          <children>
-            <TextField fx:id="username" layoutX="217.0" layoutY="34.0" />
-            <TextField fx:id="password" layoutX="217.0" layoutY="74.0" />
-            <Text fx:id="usernameLabel" layoutX="62.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <Text fx:id="passwordLabel" layoutX="60.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <TextField fx:id="username" layoutX="217.0" layoutY="57.0" />
+            <TextField fx:id="password" layoutX="217.0" layoutY="97.0" />
+            <Text fx:id="usernameLabel" layoutX="62.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text fx:id="passwordLabel" layoutX="60.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Button fx:id="login" layoutX="320.0" layoutY="199.0" mnemonicParsing="false" onAction="#onLogin" text="Login" />
             <Button fx:id="exit" layoutX="222.0" layoutY="199.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
-            <Text fx:id="languageLabel" layoutX="60.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language: " />
-            <Text fx:id="language" layoutX="228.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="locationText" layoutX="60.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" />
-            <Text fx:id="locationTextResult" layoutX="227.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text layoutX="60.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zone:" />
-            <Text fx:id="zoner" layoutX="228.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="languageLabel" layoutX="60.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language: " />
+            <Text fx:id="language" layoutX="228.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="locationText" layoutX="61.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" />
+            <Text fx:id="locationTextResult" layoutX="228.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children>
       </AnchorPane>
    </children>
