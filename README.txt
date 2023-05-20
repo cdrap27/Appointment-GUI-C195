@@ -4,9 +4,7 @@ Purpose:  The purpose of this application is to communicate with the SQL Databas
 
 Author: Chad Draper 
 
-Student Number: 007131218
-
-Contact: Cdrap27@wgu.edu
+Contact: Chad.Draper37@gmail.com
 
 Version 1.0
 
@@ -21,6 +19,12 @@ VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
 Java Version 17.0.1
 
 Java FX Version: javaFX-SDK-17.0
+
+What I learned:
+Thorough understanding of creating a GUI using Scene Builder and editing it using Java.  
+How to communicate with an SQL database using Java as well as a GUI for easier entry/access.
+How to write code on multiple machines using GitHub/version control.
+Much greater confidence and understanding of programming using Java.
 
 Directions: 
 Login using 'test' as username and password. Test data is automatically added and lists for all database information are created.
